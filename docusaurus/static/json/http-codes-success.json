@@ -1,0 +1,22 @@
+[
+  {
+    "Code": "200 OK",
+    "Description": "The request has been successfully processed."
+  },
+  {
+    "Code": "201 Created",
+    "Description": "Processing the request created a new resource."
+  },
+  {
+    "Code": "202 Accepted",
+    "Description": "The request has been accepted for processing, but processing has not been completed yet."
+  },
+  {
+    "Code": "204 No Content",
+    "Description": "The request has been successfully processed, but there is no content to return."
+  },
+  {
+    "Code": "206 Partial Content",
+    "Description": "The request has been successfully processed and the required data was processed, but part of the data was not processed or was processed differently."
+  }
+]

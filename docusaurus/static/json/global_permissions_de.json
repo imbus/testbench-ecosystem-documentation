@@ -1,0 +1,57 @@
+[
+  {
+    "Permission": "AccessSecuredData",
+    "Übersetzung": "Gesicherte Basisdaten aufrufen",
+    "Beschreibung": "Zugriff auf geschützte Basisdaten"
+  },
+  {
+    "Permission": "ReadUserDetails",
+    "Übersetzung": "Benutzerinformationen lesen",
+    "Beschreibung": "Benutzerinformationen lesen"
+  },
+  {
+    "Permission": "ReadUserMemberships",
+    "Übersetzung": "Benutzerzugehörigkeiten lesen",
+    "Beschreibung": "Benutzerzugehörigkeiten lesen (auch fremde)"
+  },
+  {
+    "Permission": "SynchronizeUsers",
+    "Übersetzung": "Benutzer synchronisieren",
+    "Beschreibung": "Benutzer aus LDAP synchronisieren"
+  },
+  {
+    "Permission": "ReadUserSessions",
+    "Übersetzung": "Benutzersitzungen lesen",
+    "Beschreibung": "Aktive Benutzersitzungen lesen"
+  },
+  {
+    "Permission": "DeleteUserSession",
+    "Übersetzung": "Benutzersitzung löschen",
+    "Beschreibung": "Aktive Benutzersitzung löschen (Benutzer abmelden)"
+  },
+  {
+    "Permission": "ModifyUserData",
+    "Übersetzung": "Benutzerdaten bearbeiten",
+    "Beschreibung": "Benutzerdaten bearbeiten"
+  },
+  {
+    "Permission": "DeleteUserAccount",
+    "Übersetzung": "Benutzerkonto löschen",
+    "Beschreibung": "Benutzerkonto löschen"
+  },
+  {
+    "Permission": "ReadCompleteUsersList",
+    "Übersetzung": "Vollständige Benutzerliste Lesen",
+    "Beschreibung": "Vollständige Benutzerliste lesen (einschließlich inaktiver Benutzer)"
+  },
+  {
+    "Permission": "ReadActiveUsersList",
+    "Übersetzung": "Liste aktiver Benutzer lesen",
+    "Beschreibung": "Liste aktiver Benutzer lesen"
+  },
+  {
+    "Permission": "ReadOwnUserDetails",
+    "Übersetzung": "Eigene Benutzerinformationen lesen",
+    "Beschreibung": "Eigene Benutzerinformationen lesen"
+  }
+]

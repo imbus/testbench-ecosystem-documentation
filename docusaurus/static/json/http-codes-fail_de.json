@@ -1,0 +1,38 @@
+[
+  {
+    "Code": "400 Bad Request",
+    "Beschreibung": "Der Server konnte die Anfrage aufgrund syntaktischer Fehler nicht verarbeiten, z. B. fehlerhaftes JSON, ungültige Abfrageparameter oder falsche Formate."
+  },
+  {
+    "Code": "401 Unauthorized",
+    "Beschreibung": "Sie haben versucht, ohne gültige Benutzeranmeldedaten auf eine geschützte Ressource zuzugreifen. Jede REST-API-Methode, die Berechtigungen erfordert, versucht einen Login."
+  },
+  {
+    "Code": "403 Forbidden",
+    "Beschreibung": "Ihre Anmeldedaten sind gültig, aber Sie verfügen nicht über ausreichende Berechtigungen, um diese Aktion auszuführen."
+  },
+  {
+    "Code": "404 Not Found",
+    "Beschreibung": "Die angeforderte Ressource wurde nicht gefunden. Entweder existiert das gesuchte Element nicht oder die angeforderte URI ist ungültig."
+  },
+  {
+    "Code": "409 Conflict",
+    "Beschreibung": "Eine erforderliche Vorbedingung für die Verarbeitung der Anfrage ist nicht erfüllt oder die Anfrage steht in Konflikt mit dem aktuellen Zustand der Ressource."
+  },
+  {
+    "Code": "413 Entity Too Large",
+    "Beschreibung": "Sie haben versucht, einen Request-Body zu senden, der größer ist, als der Server zulässt. Dies kann z. B. beim Hochladen einer Datei auftreten, die die maximal zulässige Größe überschreitet."
+  },
+  {
+    "Code": "415 Unsupported Media Type",
+    "Beschreibung": "Sie verwenden einen nicht unterstützten Medientyp. Die API erwartet 'application/vnd.testbench+json', sofern nichts anderes dokumentiert ist."
+  },
+  {
+    "Code": "422 Unprocessable Entity",
+    "Beschreibung": "Obwohl die Anfrage syntaktisch korrekt ist, enthält sie semantisch ungültige Werte. Dies kann z. B. durch Verweise auf nicht existente IDs oder durch die Verwendung einer Werteliste anstelle eines einzelnen Werts auftreten."
+  },
+  {
+    "Code": "500 Internal Error",
+    "Beschreibung": "Der Server ist auf einen unerwarteten Zustand gestoßen und konnte die Anfrage nicht verarbeiten."
+  }
+]

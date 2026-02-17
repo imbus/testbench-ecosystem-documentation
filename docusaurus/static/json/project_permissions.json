@@ -1,0 +1,162 @@
+[
+  {
+    "Permission": "RestrictProjectUDFs",
+    "Description": "Modify project user-defined fields when restricted to admins"
+  },
+  {
+    "Permission": "ReadProjectDetails",
+    "Description": "Read project, test object version or cycle details"
+  },
+  {
+    "Permission": "ReadProjectMembers",
+    "Description": "Read project members"
+  },
+  {
+    "Permission": "ReadProjectHierarchy",
+    "Description": "Read project hierarchy (test object versions, cycles)"
+  },
+  {
+    "Permission": "ModifyProjectDetails",
+    "Description": "Modify project, test object version or cycle details"
+  },
+  {
+    "Permission": "ModifyUserRolesInProject",
+    "Description": "Modify user roles in a project"
+  },
+  {
+    "Permission": "ReadProjectExportOverRMI",
+    "Description": "Read project export from jBoss over RMI"
+  },
+  {
+    "Permission": "ReadTovReportOverRMI",
+    "Description": "Read TOV report from jBoss over RMI"
+  },
+  {
+    "Permission": "ReadCycleReportOverRMI",
+    "Description": "Read cycle report from jBoss over RMI"
+  },
+  {
+    "Permission": "ReadTovReport",
+    "Description": "Read TOV report such as specification report"
+  },
+  {
+    "Permission": "ReadCycleReport",
+    "Description": "Read cycle report such as execution report"
+  },
+  {
+    "Permission": "DownloadReportFile",
+    "Description": "Download generated report file"
+  },
+  {
+    "Permission": "ReadProjectUDFs",
+    "Description": "Read definitions of project user defined fields"
+  },
+  {
+    "Permission": "ModifyProjectUDFs",
+    "Description": "Modify project user defined fields (if not restricted to admins)"
+  },
+  {
+    "Permission": "ReadProjectDefectsAndTheirAssignments",
+    "Description": "Read project defects and their assignments"
+  },
+  {
+    "Permission": "ReadTestThemeStatusDistribution",
+    "Description": "Read test theme status distribution"
+  },
+  {
+    "Permission": "ReadTovRequirements",
+    "Description": "Read test object version requirements"
+  },
+  {
+    "Permission": "ReadCycleRequirements",
+    "Description": "Read test cycle requirements"
+  },
+  {
+    "Permission": "ReadTestThemeTree",
+    "Description": "Read test theme tree"
+  },
+  {
+    "Permission": "ReadTestThemeDetails",
+    "Description": "Read test theme details"
+  },
+  {
+    "Permission": "ReadTestCaseSetDetails",
+    "Description": "Read test case set details"
+  },
+  {
+    "Permission": "ReadTestCaseDetails",
+    "Description": "Read test case details"
+  },
+  {
+    "Permission": "ReadReportingJobDetails",
+    "Description": "Read reporting job details"
+  },
+  {
+    "Permission": "ReadExecutionImportingJobDetails",
+    "Description": "Read execution importing job details"
+  },
+  {
+    "Permission": "ReadDefectsMetricDistribution",
+    "Description": "Read defects metric distribution"
+  },
+  {
+    "Permission": "ReadTestLabels",
+    "Description": "Read test labels"
+  },
+  {
+    "Permission": "ModifyTestLabels",
+    "Description": "Modify test labels"
+  },
+  {
+    "Permission": "ImportExecutionResults",
+    "Description": "Modify import execution results"
+  },
+  {
+    "Permission": "ReadTestElements",
+    "Description": "Read test elements"
+  },
+  {
+    "Permission": "ModifyTestElements",
+    "Description": "Modify test elements"
+  },
+  {
+    "Permission": "ModifySpecifications",
+    "Description": "Modify specifications"
+  },
+  {
+    "Permission": "ModifyGlobalTestLabels",
+    "Description": "Modify global test labels"
+  },
+  {
+    "Permission": "PrivatizeGlobalTestLabels",
+    "Description": "Privatize global test labels"
+  },
+  {
+    "Permission": "ReadCompleteProjectsList",
+    "Description": "Read list of all projects"
+  },
+  {
+    "Permission": "ReadOwnProjectsList",
+    "Description": "Read list of own projects"
+  },
+  {
+    "Permission": "ReadInvisibleProjectContent",
+    "Description": "Read invisible project content"
+  },
+  {
+    "Permission": "UnlockForeignTestElements",
+    "Description": "Unlock foreign locked test elements"
+  },
+  {
+    "Permission": "UnlockForeignSpecs",
+    "Description": "Unlock foreign locked specifications"
+  },
+  {
+    "Permission": "ModifySpecManagementInfo",
+    "Description": "Modify management information of specifications"
+  },
+  {
+    "Permission": "ModifySpecPriorityAndDueDate",
+    "Description": "Modify priority and due date of specifications"
+  }
+]

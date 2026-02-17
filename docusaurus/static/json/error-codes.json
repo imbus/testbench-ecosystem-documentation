@@ -1,0 +1,78 @@
+[
+  {
+    "Error-Code": "itb-1001",
+    "Description": "The test case set could not be locked."
+  },
+  {
+    "Error-Code": "itb-1002",
+    "Description": "The responsible user for the test case set does not have the tester role."
+  },
+  {
+    "Error-Code": "itb-1003",
+    "Description": "The test case was not found."
+  },
+  {
+    "Error-Code": "itb-1004",
+    "Description": "The test case has an unsuitable verdict."
+  },
+  {
+    "Error-Code": "itb-1005",
+    "Description": "The assigned tester was removed. Either the tester was undefined in the protocol, or the tester in the protocol does not have the tester role, or the default tester does not have the tester role."
+  },
+  {
+    "Error-Code": "itb-1006",
+    "Description": "An attachment of this test case has been converted to a server side file reference, because it is larger than 10 MB. The file will be deleted after '$hoursToDelete' hours. Either the application server's administrator must save the attachment before expiration time or the attachment must be changed to have the allowed size, then it can be uploaded manually."
+  },
+  {
+    "Error-Code": "itb-1007",
+    "Description": "It was not possible to import all defects for this test case because at least one defect has a too long name."
+  },
+  {
+    "Error-Code": "itb-1008",
+    "Description": "It was not possible to import all defects for this test case because at least one defect has an invalid name."
+  },
+  {
+    "Error-Code": "itb-1009",
+    "Description": "It was not possible to import all udf values for this test case because at least one value is too long."
+  },
+  {
+    "Error-Code": "itb-1010",
+    "Description": "It was not possible to import all udf values for this test case because at least one value is invalid."
+  },
+  {
+    "Error-Code": "itb-1011",
+    "Description": "The reference was not found: '$reference'."
+  },
+  {
+    "Error-Code": "itb-1012",
+    "Description": "The attachment was not found: '$attachment', it will be managed as a reference."
+  },
+  {
+    "Error-Code": "itb-1013",
+    "Description": "The associated test theme does not match the given filtering and the test case set can therefore not be imported."
+  },
+  {
+    "Error-Code": "itb-1014",
+    "Description": "The test case set does not match the given filtering and can therefore not be imported."
+  },
+  {
+    "Error-Code": "itb-1015",
+    "Description": "The test case does not match the given filtering and can therefore not be imported."
+  },
+  {
+    "Error-Code": "itb-1016",
+    "Description": "It was not possible to import data for the test case set because of modified specification."
+  },
+  {
+    "Error-Code": "itb-1017",
+    "Description": "The defect ID must be unique: '$defectId'."
+  },
+  {
+    "Error-Code": "itb-1018",
+    "Description": "The number of requirements exceeded the number of 100.000. The baselines shall be retrieved one by one."
+  },
+  {
+    "Error-Code": "itb-1019",
+    "Description": "The reference name is too long. Only 2000 characters are allowed."
+  }
+]

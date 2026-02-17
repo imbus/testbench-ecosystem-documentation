@@ -1,0 +1,22 @@
+[
+  {
+    "Code": "200 OK",
+    "Beschreibung": "Die Anfrage wurde erfolgreich verarbeitet."
+  },
+  {
+    "Code": "201 Created",
+    "Beschreibung": "Durch die Verarbeitung der Anfrage wurde eine neue Ressource erstellt."
+  },
+  {
+    "Code": "202 Accepted",
+    "Beschreibung": "Die Anfrage wurde zur Verarbeitung akzeptiert, die Verarbeitung ist jedoch noch nicht abgeschlossen."
+  },
+  {
+    "Code": "204 No Content",
+    "Beschreibung": "Die Anfrage wurde erfolgreich verarbeitet, es gibt jedoch keine Inhalte zurückzugeben."
+  },
+  {
+    "Code": "206 Partial Content",
+    "Beschreibung": "Die Anfrage wurde erfolgreich verarbeitet und die erforderlichen Daten wurden verarbeitet, aber ein Teil der Daten wurde nicht oder auf andere Weise verarbeitet."
+  }
+]

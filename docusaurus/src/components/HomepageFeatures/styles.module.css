@@ -1,0 +1,27 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
+
+.featureLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--ifm-card-border-radius, 0.5rem);
+  padding: var(--ifm-spacing-vertical) var(--ifm-spacing-horizontal);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.featureLink:hover,
+.featureLink:focus {
+  text-decoration: none;
+  transform: translateY(-4px);
+  box-shadow: var(--ifm-global-shadow-lw);
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "Permission": "RestrictProjectUDFs",
+    "Übersetzung": "BDF eines Projektes einschränken",
+    "Beschreibung": "Projektbenutzerdefinierte Felder bearbeiten (nur für Administratoren erlaubt)"
+  },
+  {
+    "Permission": "ReadProjectDetails",
+    "Übersetzung": "Projektdetails lesen",
+    "Beschreibung": "Projekt-, Testobjektversion- oder Zyklusdetails lesen"
+  },
+  {
+    "Permission": "ReadProjectMembers",
+    "Übersetzung": "Projektmitglieder lesen",
+    "Beschreibung": "Projektmitglieder lesen"
+  },
+  {
+    "Permission": "ReadProjectHierarchy",
+    "Übersetzung": "Projekthierarchie lesen",
+    "Beschreibung": "Projekthierarchie lesen, z.B. Testobjektversionen und Testzyklen"
+  },
+  {
+    "Permission": "ModifyProjectDetails",
+    "Übersetzung": "Projektdetails bearbeiten",
+    "Beschreibung": "Projekt-, Testobjektversion- oder Zyklusdetails bearbeiten"
+  },
+  {
+    "Permission": "ModifyUserRolesInProject",
+    "Übersetzung": "Benutzerrollen im Projekt bearbeiten",
+    "Beschreibung": "Benutzerrollen im Projekt bearbeiten"
+  },
+  {
+    "Permission": "ReadProjectExportOverRMI",
+    "Übersetzung": "Projekt-Export über RMI lesen",
+    "Beschreibung": "Projekt-Export über RMI vom jBoss lesen"
+  },
+  {
+    "Permission": "ReadTovReportOverRMI",
+    "Übersetzung": "Testobjektversions-Bericht über RMI lesen",
+    "Beschreibung": "Testobjektversions-Bericht über RMI vom jBoss lesen"
+  },
+  {
+    "Permission": "ReadCycleReportOverRMI",
+    "Übersetzung": "Zyklusbericht über RMI lesen",
+    "Beschreibung": "Zyklusbericht über RMI vom jBoss lesen"
+  },
+  {
+    "Permission": "ReadTovReport",
+    "Übersetzung": "Testobjektversions-Bericht lesen",
+    "Beschreibung": "Testobjektversions-Bericht lesen, z.B. Spezifikationsbericht"
+  },
+  {
+    "Permission": "ReadCycleReport",
+    "Übersetzung": "Zyklusbericht lesen",
+    "Beschreibung": "Zyklusbericht lesen, z.B. Ausführungsbericht"
+  },
+  {
+    "Permission": "DownloadReportFile",
+    "Übersetzung": "Generierte Berichtsdatei herunterladen",
+    "Beschreibung": "Generierte Berichtsdatei herunterladen"
+  },
+  {
+    "Permission": "ReadProjectUDFs",
+    "Übersetzung": "BDF eines Projektes lesen",
+    "Beschreibung": "Definitionen benutzerdefinierter Felder eines Projektes lesen"
+  },
+  {
+    "Permission": "ModifyProjectUDFs",
+    "Übersetzung": "BDF eines Projektes bearbeiten",
+    "Beschreibung": "Definitionen benutzerdefinierter Felder eines Projektes bearbeiten (ohne Admin-Einschränkung)"
+  },
+  {
+    "Permission": "ReadProjectDefectsAndTheirAssignments",
+    "Übersetzung": "Fehler eines Projektes und deren Zuordnungen lesen",
+    "Beschreibung": "Fehler eines Projektes und deren Zuordnungen lesen"
+  },
+  {
+    "Permission": "ReadTestThemeStatusDistribution",
+    "Übersetzung": "Statusverteilung von Testthemen lesen",
+    "Beschreibung": "Statusverteilung der Testthemen lesen"
+  },
+  {
+    "Permission": "ReadTovRequirements",
+    "Übersetzung": "Anforderungen einer Testobjektversion lesen",
+    "Beschreibung": "Anforderungen einer Testobjektversion lesen"
+  },
+  {
+    "Permission": "ReadCycleRequirements",
+    "Übersetzung": "Anforderungen eines Testzyklus lesen",
+    "Beschreibung": "Anforderungen eines Testzyklus lesen"
+  },
+  {
+    "Permission": "ReadTestThemeTree",
+    "Übersetzung": "Testthemenbaum lesen",
+    "Beschreibung": "Testthemenbaum lesen"
+  },
+  {
+    "Permission": "ReadTestThemeDetails",
+    "Übersetzung": "Details eines Testthemas lesen",
+    "Beschreibung": "Details eines Testthemas lesen"
+  },
+  {
+    "Permission": "ReadTestCaseSetDetails",
+    "Übersetzung": "Details eines Testfallsatzes lesen",
+    "Beschreibung": "Details eines Testfallsatzes lesen"
+  },
+  {
+    "Permission": "ReadTestCaseDetails",
+    "Übersetzung": "Details eines Testfalles lesen",
+    "Beschreibung": "Details eines Testfalles lesen"
+  },
+  {
+    "Permission": "ReadReportingJobDetails",
+    "Übersetzung": "Details eines Reporting-Jobs lesen",
+    "Beschreibung": "Details eines Reporting-Jobs lesen"
+  },
+  {
+    "Permission": "ReadExecutionImportingJobDetails",
+    "Übersetzung": "Details eines Import-Ausführungs-Jobs lesen",
+    "Beschreibung": "Details eines Import-Ausführungs-Jobs (Importieren von Durchführungsergebnissen) lesen"
+  },
+  {
+    "Permission": "ReadDefectsMetricDistribution",
+    "Übersetzung": "Verteilung der Fehlermetriken lesen",
+    "Beschreibung": "Verteilung der Fehlermetriken lesen"
+  },
+  {
+    "Permission": "ReadTestLabels",
+    "Übersetzung": "Testlabels lesen",
+    "Beschreibung": "Testlabels lesen"
+  },
+  {
+    "Permission": "ModifyTestLabels",
+    "Übersetzung": "Testlabels bearbeiten",
+    "Beschreibung": "Testlabels bearbeiten"
+  },
+  {
+    "Permission": "ImportExecutionResults",
+    "Übersetzung": "Durchführungsergebnisse importieren",
+    "Beschreibung": "Durchführungsergebnisse importieren"
+  },
+  {
+    "Permission": "ReadTestElements",
+    "Übersetzung": "Testelemente lesen",
+    "Beschreibung": "Testelemente lesen"
+  },
+  {
+    "Permission": "ModifyTestElements",
+    "Übersetzung": "Testelemente bearbeiten",
+    "Beschreibung": "Testelemente bearbeiten"
+  },
+  {
+    "Permission": "ModifySpecifications",
+    "Übersetzung": "Spezifikationen bearbeiten",
+    "Beschreibung": "Spezifikationen bearbeiten"
+  },
+  {
+    "Permission": "ModifyGlobalTestLabels",
+    "Übersetzung": "Globale Testlabels bearbeiten",
+    "Beschreibung": "Globale Testlabels bearbeiten"
+  },
+  {
+    "Permission": "PrivatizeGlobalTestLabels",
+    "Übersetzung": "Globale Testlabels privatisieren",
+    "Beschreibung": "Globale Testlabels privatisieren"
+  },
+  {
+    "Permission": "ReadCompleteProjectsList",
+    "Übersetzung": "Alle Projekte lesen",
+    "Beschreibung": "Liste aller Projekte lesen"
+  },
+  {
+    "Permission": "ReadOwnProjectsList",
+    "Übersetzung": "Eigene Projekte lesen",
+    "Beschreibung": "Liste der eigenen Projekte lesen"
+  },
+  {
+    "Permission": "ReadInvisibleProjectContent",
+    "Übersetzung": "Nicht sichtbare Projektinhalte lesen",
+    "Beschreibung": "Nicht sichtbare Projektinhalte lesen"
+  },
+  {
+    "Permission": "UnlockForeignTestElements",
+    "Übersetzung": "Fremdgesperrte Testelemente entsperren",
+    "Beschreibung": "Fremdgesperrte Testelemente entsperren"
+  },
+  {
+    "Permission": "UnlockForeignSpecs",
+    "Übersetzung": "Fremdgesperrte Spezifikationen entsperren",
+    "Beschreibung": "Fremdgesperrte Spezifikationen entsperren"
+  },
+  {
+    "Permission": "ModifySpecManagementInfo",
+    "Übersetzung": "Managementinformationen einer Spezifikation bearbeiten",
+    "Beschreibung": "Managementinformationen einer Spezifikation bearbeiten"
+  },
+  {
+    "Permission": "ModifySpecPriorityAndDueDate",
+    "Übersetzung": "Priorität und Fälligkeitsdatum einer Spezifikation bearbeiten",
+    "Beschreibung": "Priorität und Fälligkeitsdatum einer Spezifikation bearbeiten"
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "Fehler Code": "itb-1001",
+    "Beschreibung": "Die Testsatzmenge konnte nicht gesperrt werden."
+  },
+  {
+    "Fehler Code": "itb-1002",
+    "Beschreibung": "Der verantwortliche Benutzer für die Testsatzmenge besitzt keine Tester-Rolle."
+  },
+  {
+    "Fehler Code": "itb-1003",
+    "Beschreibung": "Der Testfall wurde nicht gefunden."
+  },
+  {
+    "Fehler Code": "itb-1004",
+    "Beschreibung": "Der Testfall hat ein ungeeignetes Urteil."
+  },
+  {
+    "Fehler Code": "itb-1005",
+    "Beschreibung": "Der zugewiesene Tester wurde entfernt. Entweder war der Tester im Protokoll nicht definiert, oder der Tester im Protokoll hat keine Tester-Rolle, oder der Standardtester hat keine Tester-Rolle."
+  },
+  {
+    "Fehler Code": "itb-1006",
+    "Beschreibung": "Ein Anhang dieses Testfalls wurde in eine serverseitige Dateireferenz umgewandelt, da er größer als 10 MB ist. Die Datei wird nach '$hoursToDelete' Stunden gelöscht. Entweder muss der Administrator des Applikationsservers den Anhang vor Ablauf der Zeit sichern oder der Anhang muss verkleinert werden, damit er innerhalb der zulässigen Größe liegt und anschließend manuell hochgeladen werden kann."
+  },
+  {
+    "Fehler Code": "itb-1007",
+    "Beschreibung": "Es war nicht möglich, alle Defects für diesen Testfall zu importieren, da mindestens ein Defect einen zu langen Namen hat."
+  },
+  {
+    "Fehler Code": "itb-1008",
+    "Beschreibung": "Es war nicht möglich, alle Defects für diesen Testfall zu importieren, da mindestens ein Defect einen ungültigen Namen hat."
+  },
+  {
+    "Fehler Code": "itb-1009",
+    "Beschreibung": "Es war nicht möglich, alle UDF-Werte für diesen Testfall zu importieren, da mindestens ein Wert zu lang ist."
+  },
+  {
+    "Fehler Code": "itb-1010",
+    "Beschreibung": "Es war nicht möglich, alle UDF-Werte für diesen Testfall zu importieren, da mindestens ein Wert ungültig ist."
+  },
+  {
+    "Fehler Code": "itb-1011",
+    "Beschreibung": "Die Referenz wurde nicht gefunden: '$reference'."
+  },
+  {
+    "Fehler Code": "itb-1012",
+    "Beschreibung": "Der Anhang wurde nicht gefunden: '$attachment', er wird als Referenz behandelt."
+  },
+  {
+    "Fehler Code": "itb-1013",
+    "Beschreibung": "Das zugeordnete Testthema entspricht nicht der angegebenen Filterung und die Testsatzmenge kann daher nicht importiert werden."
+  },
+  {
+    "Fehler Code": "itb-1014",
+    "Beschreibung": "Die Testsatzmenge entspricht nicht der angegebenen Filterung und kann daher nicht importiert werden."
+  },
+  {
+    "Fehler Code": "itb-1015",
+    "Beschreibung": "Der Testfall entspricht nicht der angegebenen Filterung und kann daher nicht importiert werden."
+  },
+  {
+    "Fehler Code": "itb-1016",
+    "Beschreibung": "Es war nicht möglich, Daten für die Testsatzmenge zu importieren, weil sich die Spezifikation geändert hat."
+  },
+  {
+    "Fehler Code": "itb-1017",
+    "Beschreibung": "Die Defect-ID muss eindeutig sein: '$defectId'."
+  },
+  {
+    "Fehler Code": "itb-1018",
+    "Beschreibung": "Die Anzahl der Anforderungen hat 100.000 überschritten. Die Baselines sollten einzeln abgerufen werden."
+  },
+  {
+    "Fehler Code": "itb-1019",
+    "Beschreibung": "Der Referenzname ist zu lang. Es sind maximal 2000 Zeichen erlaubt."
+  }
+]

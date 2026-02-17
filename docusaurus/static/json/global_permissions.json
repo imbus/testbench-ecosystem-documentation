@@ -1,0 +1,46 @@
+[
+  {
+    "Permission": "AccessSecuredData",
+    "Description": "Access basic secured data"
+  },
+  {
+    "Permission": "ReadUserDetails",
+    "Description": "Read user information"
+  },
+  {
+    "Permission": "ReadUserMemberships",
+    "Description": "Read (possibly foreign) user memberships"
+  },
+  {
+    "Permission": "SynchronizeUsers",
+    "Description": "Synchronize users from LDAP"
+  },
+  {
+    "Permission": "ReadUserSessions",
+    "Description": "Read active user sessions"
+  },
+  {
+    "Permission": "DeleteUserSession",
+    "Description": "Delete active user session (logout user)"
+  },
+  {
+    "Permission": "ModifyUserData",
+    "Description": "Modify user data"
+  },
+  {
+    "Permission": "DeleteUserAccount",
+    "Description": "Delete user account"
+  },
+  {
+    "Permission": "ReadCompleteUsersList",
+    "Description": "Read complete users' list including inactive users"
+  },
+  {
+    "Permission": "ReadActiveUsersList",
+    "Description": "Read list of active users"
+  },
+  {
+    "Permission": "ReadOwnUserDetails",
+    "Description": "Read own user information"
+  }
+]

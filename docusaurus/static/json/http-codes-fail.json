@@ -1,0 +1,38 @@
+[
+  {
+    "Code": "400 Bad Request",
+    "Description": "The server could not process the request due to syntactic errors such as malformed JSON, invalid query parameters or bad formats."
+  },
+  {
+    "Code": "401 Unauthorized",
+    "Description": "You tried to access a protected resource without valid user credentials. Each REST API method that requires permissions will attempt a login."
+  },
+  {
+    "Code": "403 Forbidden",
+    "Description": "Your credentials are valid, but you have insufficient permissions to perform this action."
+  },
+  {
+    "Code": "404 Not Found",
+    "Description": "The requested resource could not be found. Either the element you are looking for does not exist or the requested URI is invalid."
+  },
+  {
+    "Code": "409 Conflict",
+    "Description": "A required precondition for processing the request is not met, or the request conflicts with the current state of the resource."
+  },
+  {
+    "Code": "413 Entity Too Large",
+    "Description": "You tried to send a request body that is larger than the server is configured to allow. This may occur when uploading an entity that exceeds the maximum size (for example, a large file)."
+  },
+  {
+    "Code": "415 Unsupported Media Type",
+    "Description": "You are using an unsupported media type. The API expects 'application/vnd.testbench+json' unless documented otherwise."
+  },
+  {
+    "Code": "422 Unprocessable Entity",
+    "Description": "Although the request entity is syntactically correct, it contains semantically invalid values. This may occur by referencing non-existent IDs or using a list of values instead of a single value."
+  },
+  {
+    "Code": "500 Internal Error",
+    "Description": "The server encountered an unexpected condition and could not process the request."
+  }
+]

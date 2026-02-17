@@ -1,0 +1,489 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/roboto-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/roboto-medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/roboto-light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* You can override the default Infima variables here. */
+:root {
+  --testbench-orange: #ec9122;
+  --imbus-green: #11956d;
+  --ifm-color-primary: var(--imbus-green);
+  --ifm-color-primary-contrast: #ffffff;
+  --ifm-color-primary-dark: #00805a;
+  --ifm-color-primary-darker: #00704c;
+  --ifm-color-primary-darkest: #005431;
+  --ifm-color-primary-light: #099e74;
+  --ifm-color-primary-lighter: #2dad87;
+  --ifm-color-primary-lightest: #52bc9b;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: var(--testbench-orange);
+  --ifm-color-primary-contrast: #000000;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* --- Active Users Styling --- */
+.testbench-card {
+  position: relative;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin: 1rem auto;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  min-width: 690px;
+  max-width: 950px;
+  /* width: max-content; */
+}
+
+.login-dialog {
+  max-width: 450px;
+}
+
+.testbench-card.warning {
+  border-color: var(--ifm-color-danger);
+  color: var(--ifm-color-danger);
+}
+
+
+
+.testbench-subtext {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.login-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  background: var(--ifm-background-color);
+  margin-bottom: 0.7rem;
+  transition: border-color 0.2s ease;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px rgba(5, 144, 104, 0.2);
+}
+
+.primary-btn {
+  width: 100%;
+  background: var(--ifm-color-primary);
+  color: var(--ifm-color-primary-contrast);
+  border: none;
+  padding: 0.7rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: var(--ifm-color-primary-dark);
+}
+.top-right-corner {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.secondary-btn {
+  --btn-padding-y-base: 0.2rem;
+  --btn-padding-x-base: 0.6rem;
+  border: none;
+  border-radius: 4px;
+  padding: var(--btn-padding-y, var(--btn-padding-y-base)) var(--btn-padding-x, var(--btn-padding-x-base));
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, padding 0.1s ease, margin 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  line-height: 1;
+  color: inherit;
+}
+
+.svg-icon-button:hover .icon,
+.secondary-btn:hover .icon {
+  fill: var(--ifm-color-primary);
+}
+.svg-icon-button.danger:hover .icon,
+.secondary-btn.danger:hover .icon {
+  fill: var(--ifm-color-danger);
+}
+
+.login-error {
+  color: var(--ifm-color-danger);
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  white-space: pre-line;
+}
+
+.testbench-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  table-layout: fixed;
+}
+
+
+.testbench-table th {
+  background: var(--ifm-color-emphasis-100);
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  user-select: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.testbench-table td {
+  padding: 0.35rem 0.6rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.testbench-table tr:hover td {
+  background: var(--ifm-color-emphasis-50);
+}
+
+.testbench-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.testbench-table th,
+.testbench-table td {
+  padding: 0.4rem 0.6rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.testbench-table th {
+  background: var(--ifm-color-emphasis-100);
+  font-weight: 500;
+}
+
+.svg-icon-button {
+  --btn-padding-y-base: 0.2rem;
+  --btn-padding-x-base: 0.2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 1rem;
+  transition: color 0.2s ease, padding 0.1s ease, margin 0.1s ease;
+  padding: var(--btn-padding-y, var(--btn-padding-y-base)) var(--btn-padding-x, var(--btn-padding-x-base));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg-icon-button:hover {
+  color: #8e0000;
+}
+
+.icon svg,
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--ifm-color-emphasis-700);
+  color: var(--ifm-color-primary-dark); /* visible accent */
+  display: inline-block;
+  vertical-align: middle;
+}
+.icon-btn {
+  --icon-hover-grow: 2px;
+  cursor: pointer;
+  line-height: 1;
+  margin: 0;
+  transition: color 0.2s ease, margin 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn:hover {
+  color: var(--ifm-color-primary);
+  /* margin: calc(-1 * var(--icon-hover-grow));
+  --btn-padding-y: calc(var(--btn-padding-y-base, 0px) + var(--icon-hover-grow));
+  --btn-padding-x: calc(var(--btn-padding-x-base, 0px) + var(--icon-hover-grow)); */
+}
+.icon-btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+  margin: 0 !important;
+}
+
+.testbench-table th.sortable {
+  cursor: pointer;
+}
+
+.testbench-table th.sortable:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.testbench-table th.is-sorted {
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-primary);
+}
+
+.sort-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sort-icon {
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+}
+
+.testbench-table th.is-sorted .sort-icon {
+  opacity: 1;
+}
+
+.sort-icon.ascending {
+  transform: rotate(90deg);
+}
+
+.sort-icon.descending {
+  transform: rotate(270deg);
+}
+
+.log-viewer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 1100;
+}
+
+[data-theme='dark'] .log-viewer-overlay {
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.log-viewer-modal {
+  width: 95vw;
+  height: 95vh;
+  max-width: 95vw;
+  max-height: 95vh;
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme='dark'] .log-viewer-modal {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+.log-viewer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.log-viewer-title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.log-viewer-close {
+  --btn-padding-y-base: 0.35rem;
+  --btn-padding-x-base: 0.85rem;
+  background: transparent;
+  border: none;
+  color: var(--ifm-color-emphasis-700);
+  font-weight: 600;
+  cursor: pointer;
+  padding: var(--btn-padding-y, var(--btn-padding-y-base)) var(--btn-padding-x, var(--btn-padding-x-base));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, padding 0.1s ease, margin 0.1s ease;
+}
+
+.log-viewer-close:hover {
+  color: var(--ifm-color-primary);
+}
+
+.log-viewer-controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  background: var(--ifm-background-color);
+}
+
+.log-viewer-controls label {
+  font-weight: 500;
+}
+
+.log-viewer-select {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  background: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+.log-viewer-reload {
+  white-space: nowrap;
+  padding: 0.4rem 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(2.05rem);
+  align-self: stretch;
+}
+
+.log-viewer-editor {
+  position: relative;
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.log-viewer-editor > * {
+  flex: 1;
+  min-height: 0;
+}
+
+.navbar__logo img,
+.navbar__logo svg {
+  height: 32px;
+  width: auto;
+  max-width: 30vw;
+}
+
+.log-viewer-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--ifm-font-color-base);
+  font-weight: 500;
+  z-index: 1;
+}
+
+[data-theme='dark'] .log-viewer-loading {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+a:hover h3 {
+  color: var(--ifm-color-primary);
+}
+
+.testbench-table td.truncate,
+.testbench-table th.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cell-content {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.testbench-list ul li p,
+.testbench-list ol li p {
+  margin: 0; /* remove extra gap from paragraph margins */
+}
+
+/* Add separation between a list item and its nested list */
+.testbench-list li > ul,
+li > ol {
+  margin-top: 0.5rem; /* separation above nested list */
+  margin-bottom: 0.3rem; /* separation below nested list */
+}
+
+/* Utility: prevent wrapping for inline code or text */
+.nowrap {
+  white-space: nowrap;
+}
+
+.paren-list {
+  list-style: none;
+  counter-reset: item;
+  padding-left: 0;
+}
+
+.paren-list li {
+  counter-increment: item;
+  margin-left: 1.5em;
+}
+
+.paren-list li::before {
+  content: counter(item) ") ";
+  margin-left: -1.5em;
+  width: 1.5em;
+  display: inline-block;
+}
+
+img {
+  width: auto;
+  height: auto;
+}
