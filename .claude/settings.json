@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf testbench-cli-reporter testbench-requirement-service)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

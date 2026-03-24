@@ -14,6 +14,10 @@
 .github
 .vscode
 
+# Tool "next" docs (synced from neighboring repos, not committed)
+/testbench-cli-reporter/
+/testbench-requirement-service/
+
 # Misc
 .DS_Store
 .env.local

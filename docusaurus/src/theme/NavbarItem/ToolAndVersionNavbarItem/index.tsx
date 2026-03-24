@@ -5,6 +5,7 @@ import DocsVersionDropdownNavbarItem from '@theme/NavbarItem/DocsVersionDropdown
 
 type ToolDocsInstance = {
   id: string;
+  label?: string;
   routeBasePath: string;
 };
 
@@ -48,10 +49,11 @@ export default function ToolAndVersionNavbarItem({
   const {pathname} = useLocation();
   const activeToolId = getActiveToolId(pathname, tools);
 
+  const activeTool = tools.find((t) => t.id === activeToolId);
   const activeToolLabel =
     activeToolId === null || activeToolId === 'default'
       ? 'Docs'
-      : activeToolId;
+      : (activeTool?.label ?? activeToolId);
 
   const toolItems = [
     {
@@ -63,7 +65,7 @@ export default function ToolAndVersionNavbarItem({
       type: 'doc' as const,
       docsPluginId: tool.id,
       docId: 'intro',
-      label: tool.id,
+      label: tool.label ?? tool.id,
     })),
   ];
 

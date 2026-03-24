@@ -1,0 +1,10 @@
+{
+  "testbench-cli-reporter": {
+    "label": "TestBench CLI Reporter",
+    "sourceRepo": "../../testbench-cli-reporter/docs"
+  },
+  "testbench-requirement-service": {
+    "label": "TestBench Requirement Service",
+    "sourceRepo": "../../testbench-requirement-service/docs"
+  }
+}
