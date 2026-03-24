@@ -1,81 +1,224 @@
-# testbench-ecosystem-documentation
-This repo hosts the documentation of several TestBench Ecosystem projects
+# TestBench Ecosystem Documentation
 
-## Maintaining this documentation site
+Multi-instance Docusaurus 3 documentation portal for the TestBench Ecosystem by imbus AG. Each tool has its own documentation set with independent versioning.
 
-This repository is a single Docusaurus site hosting multiple, independent docs sets (“tools”) via the multi-instance docs plugin.
+## Repository layout
 
-- Global docs live under `docusaurus/docs/` (route: `docusaurus/docs/...`).
-- Each tool has its own docs instance (route: `docusaurus/<tool-id>/...`).
+```
+imbus/                                          # GitHub org / parent folder
+├── testbench-ecosystem-documentation/          # This repo (Docusaurus site)
+│   ├── .github/workflows/
+│   │   ├── release-pages.yml                   # Deploy to GitHub Pages on push to main
+│   │   ├── pr-preview-surge.yml                # Deploy PR previews to Surge.sh
+│   │   └── version-tool-docs.yml               # Create versioned docs from tool releases
+│   └── docusaurus/
+│       ├── docs/                               # Global ecosystem docs (route: /docs/)
+│       ├── <tool-id>/                          # Tool "next" docs (git-ignored, synced for dev)
+│       ├── <tool-id>_versions.json             # Released versions (committed)
+│       ├── <tool-id>_versioned_docs/           # Versioned doc snapshots (committed)
+│       ├── <tool-id>_versioned_sidebars/       # Versioned sidebars (committed)
+│       ├── sidebars_<tool-id>.ts               # Tool sidebar definition
+│       ├── tools.config.json                   # Tool metadata (label, description, logo)
+│       ├── scripts/
+│       │   ├── sync-docs.mjs                   # Copies docs from neighbor repos
+│       │   └── add-tool.mjs                    # Interactive wizard for adding tools
+│       ├── docusaurus.config.ts                # Main site config (auto-discovers tools)
+│       └── package.json
+├── testbench-cli-reporter/                     # Tool repo (neighbor)
+│   └── docs/                                   # Documentation source
+├── testbench-requirement-service/              # Tool repo (neighbor)
+│   └── docs/                                   # Documentation source
+└── ...                                         # More tool repos
+```
 
-### Add a new tool to the Ecosystem dropdown
+**Important**: Tool repositories must be cloned as siblings of this repo (same parent directory). The folder name of each tool repo must match its `tool-id` in `tools.config.json`.
 
-The navbar “Ecosystem” dropdown is generated automatically by scanning for tool sidebars.
+## Local development
 
-To add a new tool, you only need:
-
-1. Create a new docs folder at `docusaurus/<tool-id>/`.
-2. Add an `intro` doc at `docusaurus/<tool-id>/intro.md`.
-3. Add a sidebar file `docusaurus/sidebars_<tool-id>.ts`.
-
-That’s it: the tool will be discovered and appear in the Ecosystem dropdown automatically.
-
-Notes:
-
-- `<tool-id>` must be consistent across folder name and sidebar filename.
-- The tool’s base route is `/<tool-id>/`.
-
-### Maintain versions for a tool
-
-Each tool docs instance has its own versioning lifecycle.
-
-For non-default docs instances (all tools), Docusaurus stores versions in instance-specific paths:
-
-- `docusaurus/<tool-id>_versions.json`
-- `docusaurus/<tool-id>_versioned_docs/`
-- `docusaurus/<tool-id>_versioned_sidebars/`
-
-Example (CLI Reporter):
-
-- `docusaurus/testbench-cli-reporter_versions.json`
-- `docusaurus/testbench-cli-reporter_versioned_docs/`
-- `docusaurus/testbench-cli-reporter_versioned_sidebars/`
-
-#### Tag a new version
-
-From the `docusaurus/` folder, run:
+All commands run from the `docusaurus/` directory:
 
 ```bash
-npm run docusaurus -- docs:version:<tool-id> <new-version>
+cd docusaurus
+npm install
+```
+
+### Start the dev server
+
+```bash
+npm run dev
+```
+
+This runs two things concurrently:
+
+1. **sync:watch** — copies the `docs/` folder from each neighboring tool repo into `docusaurus/<tool-id>/` and watches for changes.
+2. **docusaurus start** — launches the dev server at `http://localhost:3000` with hot reload.
+
+When you edit files in a tool's `docs/` folder, changes are automatically synced and the browser reloads.
+
+### Sync specific tools only
+
+```bash
+# Via argument
+npm run dev -- --repos testbench-cli-reporter
+
+# Via environment variable
+SYNC_REPOS=testbench-cli-reporter npm run dev
+```
+
+### Other commands
+
+| Command | Description |
+|---------|-------------|
+| `npm run build` | Production build (only versioned/released tools) |
+| `npm run start` | Dev server without doc syncing |
+| `npm run serve` | Serve a production build locally |
+| `npm run sync` | One-time sync from neighbor repos |
+| `npm run typecheck` | TypeScript type checking |
+| `npm run clear` | Clear Docusaurus cache |
+| `npm run add-tool` | Interactive wizard to register a new tool |
+
+### Environment variables
+
+| Variable | Description |
+|----------|-------------|
+| `INCLUDE_NEXT=true` | Include unreleased ("next") docs in production builds |
+| `SYNC_REPOS=tool1,tool2` | Comma-separated list of tools to sync |
+
+## Adding a new tool
+
+### 1. Register the tool in this repo
+
+Run the interactive wizard:
+
+```bash
+cd docusaurus
+npm run add-tool
+```
+
+This creates:
+- An entry in `tools.config.json`
+- A sidebar file `sidebars_<tool-id>.ts`
+- A starter doc at `<tool-id>/intro.md`
+
+The tool auto-discovers from the sidebar file and appears in the Ecosystem navbar dropdown.
+
+Alternatively, do it manually:
+
+1. Add the tool to `docusaurus/tools.config.json`:
+   ```json
+   {
+     "my-new-tool": {
+       "label": "My New Tool",
+       "description": "What the tool does.",
+       "logo": "img/my-new-tool.svg"
+     }
+   }
+   ```
+2. Create `docusaurus/sidebars_my-new-tool.ts`:
+   ```typescript
+   const sidebars = {
+     myNewToolSidebar: [{ type: 'autogenerated', dirName: '.' }],
+   };
+   export default sidebars;
+   ```
+3. Create `docusaurus/my-new-tool/intro.md` with at least a title.
+
+### 2. Set up the tool repository
+
+The tool repo must:
+- Be in the same GitHub organization (`imbus`).
+- Have a `docs/` folder at its root with Docusaurus-compatible markdown.
+- Be named exactly like the `tool-id` used in this repo.
+
+### 3. Add the release trigger workflow
+
+Copy the file `.github/workflows/trigger-docs-release.yml` from an existing tool (e.g., `testbench-cli-reporter`) into the new tool's `.github/workflows/` directory. **No changes are needed** — the workflow reads the tool-id from the repository name and the version from the release tag automatically.
+
+### 4. Ensure the `ECOSYSTEM_DOCS_TOKEN` secret is available
+
+The tool repo needs a secret called `ECOSYSTEM_DOCS_TOKEN` — a GitHub PAT (or fine-grained token) with permission to trigger `repository_dispatch` on `testbench-ecosystem-documentation`. This is best configured as an organization-level secret shared across all tool repos.
+
+## Versioning
+
+Each tool has independent versioning. Versioned files are committed to this repo; the "next" (current/unreleased) docs are git-ignored and synced from the tool repo during development.
+
+### Automated versioning (recommended)
+
+When you create a **GitHub release** in a tool repository:
+
+1. The tool's `trigger-docs-release.yml` workflow fires.
+2. It sends a `repository_dispatch` event to this repo with the tool-id and version.
+3. This repo's `version-tool-docs.yml` workflow:
+   - Downloads the `docs/` folder from the release tag.
+   - Runs `docusaurus docs:version:<tool-id> <version>` to create a versioned snapshot.
+   - Commits the versioned docs to a new branch and opens a PR.
+4. The PR triggers a Surge.sh preview deployment for review.
+5. Merging the PR triggers a GitHub Pages production deployment.
+
+```
+┌──────────────┐    repository_dispatch    ┌──────────────────────────┐
+│  Tool repo   │ ────────────────────────► │  ecosystem-docs repo     │
+│  (release)   │  tool_id, version, tag    │  version-tool-docs.yml   │
+└──────────────┘                           └────────────┬─────────────┘
+                                                        │
+                                                        ▼
+                                              Create branch + PR
+                                                        │
+                                                        ▼
+                                              PR preview (Surge.sh)
+                                                        │
+                                                        ▼
+                                              Merge → GitHub Pages
+```
+
+### Manual versioning
+
+From the `docusaurus/` directory:
+
+```bash
+npm run docusaurus -- docs:version:<tool-id> <version>
 ```
 
 Example:
 
 ```bash
-npm run docusaurus -- docs:version:testbench-cli-reporter 0.0.3
+npm run docusaurus -- docs:version:testbench-cli-reporter 1.3.0
 ```
 
-This will:
+This snapshots the current docs from `docusaurus/<tool-id>/` into versioned directories.
 
-- snapshot the current docs from `docusaurus/<tool-id>/` into `docusaurus/<tool-id>_versioned_docs/version-<new-version>/`
-- create/update the versioned sidebars under `docusaurus/<tool-id>_versioned_sidebars/`
-- prepend `<new-version>` to `docusaurus/<tool-id>_versions.json`
+### Version files
 
-#### Update the “current” (unreleased) docs
+| Path | Content |
+|------|---------|
+| `<tool-id>_versions.json` | Array of released version numbers |
+| `<tool-id>_versioned_docs/version-X.Y.Z/` | Frozen docs for that version |
+| `<tool-id>_versioned_sidebars/version-X.Y.Z-sidebars.json` | Frozen sidebar for that version |
 
-Edit files under `docusaurus/<tool-id>/`. These changes apply to the “current” version (the next version you will tag).
+## CI/CD
 
-#### Version dropdown in the navbar
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `release-pages.yml` | Push to `main` | Build and deploy to GitHub Pages |
+| `pr-preview-surge.yml` | Pull request events | Deploy preview to `<repo>-pr-<number>.surge.sh` |
+| `version-tool-docs.yml` | `repository_dispatch` from tool repos | Create versioned docs PR |
 
-The version dropdown is controlled via a navbar item of type `docsVersionDropdown` with a `docsPluginId`.
+### Required secrets
 
-This site currently shows a version dropdown for the CLI Reporter docs instance.
+| Secret | Scope | Used by |
+|--------|-------|---------|
+| `SURGE_TOKEN` | This repo | PR preview deployments |
+| `ECOSYSTEM_DOCS_TOKEN` | Org-level (all repos) | Tool repos: trigger `repository_dispatch`. This repo: checkout private tool repos for docs download. |
 
-If you want a version dropdown for another tool too, add another navbar item with that tool’s `docsPluginId`.
+The `ECOSYSTEM_DOCS_TOKEN` should be a fine-grained PAT (or classic PAT) with:
+- **Read access** to contents of all tool repositories in the org
+- **Write access** to trigger `repository_dispatch` on this repo
 
-### Troubleshooting
+Configuring it as an **organization-level secret** shared across all repos is the simplest approach.
 
-- Tool doesn’t appear in the Ecosystem dropdown:
-	- ensure `docusaurus/sidebars_<tool-id>.ts` exists
-	- ensure `docusaurus/<tool-id>/` exists and is a folder
-	- ensure `docusaurus/<tool-id>/intro.md` exists (the dropdown links to `intro`)
+## Troubleshooting
+
+- **Tool doesn't appear in the Ecosystem dropdown**: Ensure `sidebars_<tool-id>.ts` exists and `docusaurus/<tool-id>/intro.md` exists.
+- **`npm run dev` doesn't sync a tool**: The tool repo must be cloned as a sibling directory with a name matching the tool-id. Check `tools.config.json`.
+- **Versioned tool doesn't show in production build**: Only tools with at least one entry in `<tool-id>_versions.json` are included in production builds.
+- **Automated versioning PR not created**: Check that `ECOSYSTEM_DOCS_TOKEN` is set in the tool repo and has `repo` scope on this repo.

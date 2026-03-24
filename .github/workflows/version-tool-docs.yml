@@ -1,0 +1,143 @@
+name: Version Tool Documentation
+
+on:
+  repository_dispatch:
+    types: [tool-docs-release]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  version-docs:
+    name: Create versioned docs for ${{ github.event.client_payload.tool_id }} v${{ github.event.client_payload.version }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./docusaurus
+
+    env:
+      TOOL_ID: ${{ github.event.client_payload.tool_id }}
+      VERSION: ${{ github.event.client_payload.version }}
+      SOURCE_REPO: ${{ github.event.client_payload.source_repo }}
+
+    steps:
+      - name: Validate payload
+        run: |
+          if [ -z "$TOOL_ID" ] || [ -z "$VERSION" ] || [ -z "$SOURCE_REPO" ]; then
+            echo "::error::Missing required payload fields: tool_id, version, source_repo"
+            exit 1
+          fi
+        working-directory: .
+
+      - name: Checkout ecosystem-docs
+        uses: actions/checkout@v4
+
+      - name: Download docs from tool release tag
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: ${{ github.event.client_payload.tag }}
+          path: _tool-source
+          sparse-checkout: docs
+          sparse-checkout-cone-mode: true
+          # For private repos: use a PAT/GitHub App token with read access to tool repos
+          token: ${{ secrets.ECOSYSTEM_DOCS_TOKEN }}
+
+      - name: Copy docs into tool next folder
+        run: |
+          if [ ! -d "../_tool-source/docs" ]; then
+            echo "::error::No docs/ directory found in ${SOURCE_REPO} at tag ${VERSION}"
+            exit 1
+          fi
+
+          # Clean the next folder and copy fresh docs
+          rm -rf "${TOOL_ID}"
+          mkdir -p "${TOOL_ID}"
+          cp -r ../_tool-source/docs/* "${TOOL_ID}/"
+
+          echo "Copied docs into ${TOOL_ID}/"
+          ls -la "${TOOL_ID}/"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: docusaurus/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create versioned docs
+        run: |
+          npx docusaurus docs:version:${TOOL_ID} ${VERSION}
+
+          echo "Created version ${VERSION} for ${TOOL_ID}"
+          echo "Versions file:"
+          cat "${TOOL_ID}_versions.json"
+
+      - name: Clean up next folder
+        run: rm -rf "${TOOL_ID}"
+
+      - name: Clean up tool source
+        run: rm -rf _tool-source
+        working-directory: .
+
+      - name: Create branch and commit
+        id: branch
+        run: |
+          BRANCH="docs/${TOOL_ID}-v${VERSION}"
+          echo "branch=${BRANCH}" >> $GITHUB_OUTPUT
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "${BRANCH}"
+
+          git add "docusaurus/${TOOL_ID}_versions.json"
+          git add "docusaurus/${TOOL_ID}_versioned_docs/"
+          git add "docusaurus/${TOOL_ID}_versioned_sidebars/"
+
+          git commit -m "docs(${TOOL_ID}): version ${VERSION}"
+          git push origin "${BRANCH}"
+        working-directory: .
+
+      - name: Create pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Read the tool label from tools.config.json (fallback to tool_id)
+          TOOL_LABEL=$(node -e "
+            const cfg = require('./docusaurus/tools.config.json');
+            console.log(cfg['${TOOL_ID}']?.label || '${TOOL_ID}');
+          ")
+
+          PR_BODY=$(cat <<EOF
+## Automated documentation release
+
+| Field | Value |
+|-------|-------|
+| **Tool** | ${TOOL_LABEL} (\`${TOOL_ID}\`) |
+| **Version** | \`${VERSION}\` |
+| **Source** | [\`${SOURCE_REPO}\`](https://github.com/${SOURCE_REPO}) |
+
+This PR was automatically created by the **version-tool-docs** workflow
+when a new release was published in the tool repository.
+
+### Review checklist
+
+- [ ] Preview deployment looks correct
+- [ ] Version appears in the version dropdown
+- [ ] Documentation content is complete
+
+> Merge this PR to publish the documentation to production.
+EOF
+          )
+
+          gh pr create \
+            --title "docs(${TOOL_ID}): ${TOOL_LABEL} v${VERSION}" \
+            --body "${PR_BODY}" \
+            --base main \
+            --head "${{ steps.branch.outputs.branch }}"
+        working-directory: .
