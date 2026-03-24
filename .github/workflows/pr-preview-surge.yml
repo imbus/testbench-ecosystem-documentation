@@ -86,7 +86,7 @@ jobs:
           surge --project ./build \
                 --domain ${{ steps.dom.outputs.domain }} \
                 --token "$SURGE_TOKEN"
-          echo "preview_url=https://${{ steps.dom.outputs.domain }}/" >> $GITHUB_OUTPUT
+          echo "preview_url=https://${{ steps.dom.outputs.domain }}/testbench-ecosystem-documentation/" >> $GITHUB_OUTPUT
 
       - name: Comment with preview URL
         uses: peter-evans/create-or-update-comment@v4

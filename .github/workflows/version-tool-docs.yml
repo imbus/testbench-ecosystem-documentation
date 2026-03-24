@@ -107,37 +107,35 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Read the tool label from tools.config.json (fallback to tool_id)
           TOOL_LABEL=$(node -e "
             const cfg = require('./docusaurus/tools.config.json');
             console.log(cfg['${TOOL_ID}']?.label || '${TOOL_ID}');
           ")
 
-          PR_BODY=$(cat <<EOF
-## Automated documentation release
+          cat > /tmp/pr-body.md <<EOF
+          ## Automated documentation release
 
-| Field | Value |
-|-------|-------|
-| **Tool** | ${TOOL_LABEL} (\`${TOOL_ID}\`) |
-| **Version** | \`${VERSION}\` |
-| **Source** | [\`${SOURCE_REPO}\`](https://github.com/${SOURCE_REPO}) |
+          | Field | Value |
+          |-------|-------|
+          | **Tool** | ${TOOL_LABEL} (\`${TOOL_ID}\`) |
+          | **Version** | \`${VERSION}\` |
+          | **Source** | [\`${SOURCE_REPO}\`](https://github.com/${SOURCE_REPO}) |
 
-This PR was automatically created by the **version-tool-docs** workflow
-when a new release was published in the tool repository.
+          This PR was automatically created by the **version-tool-docs** workflow
+          when a new release was published in the tool repository.
 
-### Review checklist
+          ### Review checklist
 
-- [ ] Preview deployment looks correct
-- [ ] Version appears in the version dropdown
-- [ ] Documentation content is complete
+          - [ ] Preview deployment looks correct
+          - [ ] Version appears in the version dropdown
+          - [ ] Documentation content is complete
 
-> Merge this PR to publish the documentation to production.
-EOF
-          )
+          > Merge this PR to publish the documentation to production.
+          EOF
 
           gh pr create \
             --title "docs(${TOOL_ID}): ${TOOL_LABEL} v${VERSION}" \
-            --body "${PR_BODY}" \
+            --body-file /tmp/pr-body.md \
             --base main \
             --head "${{ steps.branch.outputs.branch }}"
         working-directory: .
