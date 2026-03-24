@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(rm -rf testbench-cli-reporter testbench-requirement-service)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(ls /Users/rener/Source/imbus/testbench-ecosystem-documentation/docusaurus/static/img/*.svg)",
+      "Bash(chmod +x /Users/rener/Source/imbus/testbench-ecosystem-documentation/docusaurus/scripts/add-tool.mjs)"
     ]
   }
 }

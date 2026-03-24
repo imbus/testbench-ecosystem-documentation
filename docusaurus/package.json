@@ -17,7 +17,8 @@
     "typecheck:strict": "tsc -p tsconfig.strict.json",
     "sync": "node scripts/sync-docs.mjs",
     "sync:watch": "node scripts/sync-docs.mjs --watch",
-    "dev": "concurrently --kill-others \"npm run sync:watch\" \"docusaurus start\""
+    "dev": "concurrently --kill-others \"npm run sync:watch\" \"docusaurus start\"",
+    "add-tool": "node scripts/add-tool.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.1",

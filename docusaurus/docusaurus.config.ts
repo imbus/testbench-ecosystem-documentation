@@ -12,7 +12,8 @@ const includeNext = isDev || process.env.INCLUDE_NEXT === 'true';
 
 type ToolConfig = {
   label?: string;
-  sourceRepo?: string;
+  description?: string;
+  logo?: string;
 };
 
 type ToolDocsInstance = {
@@ -94,6 +95,9 @@ function discoverToolDocsInstances(siteDir: string): ToolDocsInstance[] {
   return instances;
 }
 
+const discoveredTools = discoverToolDocsInstances(__dirname);
+const toolsConfig = loadToolsConfig(__dirname);
+
 const config: Config = {
   title: 'TestBench Ecosystem',
   tagline: 'Extensions and tools for TestBench by imbus AG',
@@ -133,10 +137,15 @@ const config: Config = {
     ],
   },
 
-  // customFields: {
-  //   TESTBENCH_API_BASE: devHost,
-  //   IS_DEV: isDev,
-  // },
+  customFields: {
+    tools: discoveredTools.map((t) => ({
+      id: t.id,
+      label: t.label,
+      description: toolsConfig[t.id]?.description ?? '',
+      logo: toolsConfig[t.id]?.logo ?? '',
+      routeBasePath: t.routeBasePath,
+    })),
+  },
 
   presets: [
     [
@@ -155,7 +164,7 @@ const config: Config = {
   ],
 
   plugins: [
-    ...discoverToolDocsInstances(__dirname).map((instance) => {
+    ...discoveredTools.map((instance) => {
       // If released versions exist, exclude "current" (next) from production
       // builds unless INCLUDE_NEXT=true. In dev mode, always include all.
       const hasReleasedVersions = instance.versions.length > 0;
@@ -259,7 +268,7 @@ const config: Config = {
         {
           type: 'custom-toolAndVersion',
           position: 'left',
-          tools: discoverToolDocsInstances(__dirname).map((instance) => ({
+          tools: discoveredTools.map((instance) => ({
             id: instance.id,
             label: instance.label,
             routeBasePath: instance.routeBasePath,

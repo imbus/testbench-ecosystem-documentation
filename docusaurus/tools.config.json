@@ -1,10 +1,12 @@
 {
   "testbench-cli-reporter": {
     "label": "TestBench CLI Reporter",
-    "sourceRepo": "../../testbench-cli-reporter/docs"
+    "description": "Command-line tool for reporting test results from CI/CD pipelines directly to TestBench.",
+    "logo": "img/testbench-cli-reporter.svg"
   },
   "testbench-requirement-service": {
     "label": "TestBench Requirement Service",
-    "sourceRepo": "../../testbench-requirement-service/docs"
+    "description": "Service for synchronizing requirements between external sources and TestBench.",
+    "logo": "img/testbench-requirement-service.svg"
   }
 }

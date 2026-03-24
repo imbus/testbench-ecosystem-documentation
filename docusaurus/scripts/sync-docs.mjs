@@ -81,12 +81,7 @@ for (const toolId of toolIds) {
     continue;
   }
 
-  if (!config.sourceRepo) {
-    console.log(`[sync] "${toolId}": no sourceRepo configured — skipping`);
-    continue;
-  }
-
-  const srcDir = path.resolve(siteDir, config.sourceRepo);
+  const srcDir = path.resolve(siteDir, '..', '..', toolId, 'docs');
   const destDir = path.join(siteDir, toolId);
 
   if (!fs.existsSync(srcDir)) {
