@@ -2,6 +2,7 @@ import React, {type ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
@@ -14,6 +15,7 @@ type ToolInfo = {
 };
 
 function Feature({label, description, logo, routeBasePath}: ToolInfo) {
+  const logoUrl = useBaseUrl(logo);
   return (
     <div className={clsx('col col--4')}>
       <Link className={styles.featureLink} to={`/${routeBasePath}/intro`}>
@@ -21,7 +23,7 @@ function Feature({label, description, logo, routeBasePath}: ToolInfo) {
           <div className="text--center">
             <img
               className={styles.featureSvg}
-              src={`/${logo}`}
+              src={logoUrl}
               alt={`${label} logo`}
             />
           </div>

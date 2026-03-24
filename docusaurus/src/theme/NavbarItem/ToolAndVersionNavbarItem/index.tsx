@@ -1,5 +1,6 @@
 import React, {type ReactNode} from 'react';
 import {useLocation} from '@docusaurus/router';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
 import DocsVersionDropdownNavbarItem from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
 
@@ -18,17 +19,23 @@ type Props = {
 
 function getActiveToolId(
   pathname: string,
+  baseUrl: string,
   tools: ToolDocsInstance[],
 ): string | null {
-  if (pathname === '/' || pathname === '') {
+  // Strip the baseUrl prefix so we work with the route-relative path
+  const relativePath = pathname.startsWith(baseUrl)
+    ? '/' + pathname.slice(baseUrl.length)
+    : pathname;
+
+  if (relativePath === '/' || relativePath === '') {
     return null;
   }
 
-  if (pathname === '/docs' || pathname.startsWith('/docs/')) {
+  if (relativePath === '/docs' || relativePath.startsWith('/docs/')) {
     return 'default';
   }
 
-  const firstSegment = pathname.split('/')[1];
+  const firstSegment = relativePath.split('/')[1];
   if (!firstSegment) {
     return null;
   }
@@ -47,7 +54,8 @@ export default function ToolAndVersionNavbarItem({
   tools = [],
 }: Props): ReactNode {
   const {pathname} = useLocation();
-  const activeToolId = getActiveToolId(pathname, tools);
+  const {siteConfig: {baseUrl}} = useDocusaurusContext();
+  const activeToolId = getActiveToolId(pathname, baseUrl, tools);
 
   const activeTool = tools.find((t) => t.id === activeToolId);
   const activeToolLabel =
