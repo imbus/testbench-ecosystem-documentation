@@ -41,7 +41,6 @@ jobs:
           path: _tool-source
           sparse-checkout: docs
           sparse-checkout-cone-mode: true
-          # For private repos: use a PAT/GitHub App token with read access to tool repos
           token: ${{ secrets.ECOSYSTEM_DOCS_TOKEN }}
 
       - name: Copy docs into tool next folder
@@ -51,7 +50,6 @@ jobs:
             exit 1
           fi
 
-          # Clean the next folder and copy fresh docs
           rm -rf "${TOOL_ID}"
           mkdir -p "${TOOL_ID}"
           cp -r ../_tool-source/docs/* "${TOOL_ID}/"
@@ -77,12 +75,23 @@ jobs:
           echo "Versions file:"
           cat "${TOOL_ID}_versions.json"
 
-      - name: Clean up next folder
-        run: rm -rf "${TOOL_ID}"
+      - name: Build site
+        run: npm run build
 
-      - name: Clean up tool source
-        run: rm -rf _tool-source
-        working-directory: .
+      - name: Deploy preview to Surge
+        id: preview
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          npm i -g surge
+          DOMAIN="${{ github.event.repository.name }}-${TOOL_ID}-v${VERSION}.surge.sh"
+          surge --project ./build --domain "${DOMAIN}" --token "$SURGE_TOKEN"
+          echo "url=https://${DOMAIN}/testbench-ecosystem-documentation/" >> $GITHUB_OUTPUT
+
+      - name: Clean up next folder and tool source
+        run: |
+          rm -rf "${TOOL_ID}"
+          rm -rf ../_tool-source
 
       - name: Create branch and commit
         id: branch
@@ -120,13 +129,14 @@ jobs:
           | **Tool** | ${TOOL_LABEL} (\`${TOOL_ID}\`) |
           | **Version** | \`${VERSION}\` |
           | **Source** | [\`${SOURCE_REPO}\`](https://github.com/${SOURCE_REPO}) |
+          | **Preview** | ${{ steps.preview.outputs.url }} |
 
           This PR was automatically created by the **version-tool-docs** workflow
           when a new release was published in the tool repository.
 
           ### Review checklist
 
-          - [ ] Preview deployment looks correct
+          - [ ] [Preview](${{ steps.preview.outputs.url }}) looks correct
           - [ ] Version appears in the version dropdown
           - [ ] Documentation content is complete
 
