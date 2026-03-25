@@ -85,9 +85,10 @@ jobs:
         run: |
           npm i -g surge
           SANITIZED_VERSION=$(echo "${VERSION}" | tr -d '.')
-          DOMAIN="${{ github.event.repository.name }}-${TOOL_ID}-v${SANITIZED_VERSION}.surge.sh"
+          DOMAIN="${TOOL_ID}-v${SANITIZED_VERSION}-docs.surge.sh"
           surge --project ./build --domain "${DOMAIN}" --token "$SURGE_TOKEN"
           echo "url=https://${DOMAIN}/testbench-ecosystem-documentation/" >> $GITHUB_OUTPUT
+          echo "domain=${DOMAIN}" >> $GITHUB_OUTPUT
 
       - name: Clean up next folder and tool source
         run: |
@@ -142,6 +143,8 @@ jobs:
           - [ ] Documentation content is complete
 
           > Merge this PR to publish the documentation to production.
+
+          <!-- surge-domain: ${{ steps.preview.outputs.domain }} -->
           EOF
 
           gh pr create \

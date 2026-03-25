@@ -1,0 +1,34 @@
+name: Teardown Docs Preview
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  teardown:
+    # Only run for automated doc version branches
+    if: startsWith(github.head_ref, 'docs/')
+    name: Teardown Surge preview
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract surge domain from PR body
+        id: domain
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          DOMAIN=$(echo "$PR_BODY" | grep -oP '(?<=<!-- surge-domain: ).*(?= -->)')
+          if [ -z "$DOMAIN" ]; then
+            echo "No surge domain found in PR body — skipping teardown"
+            exit 0
+          fi
+          echo "domain=${DOMAIN}" >> $GITHUB_OUTPUT
+          echo "Found surge domain: ${DOMAIN}"
+
+      - name: Teardown Surge deployment
+        if: steps.domain.outputs.domain
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+        run: |
+          npm i -g surge
+          surge teardown "${{ steps.domain.outputs.domain }}" --token "$SURGE_TOKEN" || true
