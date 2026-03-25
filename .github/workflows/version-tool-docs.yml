@@ -86,7 +86,12 @@ jobs:
           npm i -g surge
           SANITIZED_VERSION=$(echo "${VERSION}" | tr -d '.')
           DOMAIN="${TOOL_ID}-v${SANITIZED_VERSION}-docs.surge.sh"
-          surge --project ./build --domain "${DOMAIN}" --token "$SURGE_TOKEN"
+
+          # Move build into baseUrl subfolder so Surge serves it at the correct path
+          mkdir -p _surge/testbench-ecosystem-documentation
+          mv build/* _surge/testbench-ecosystem-documentation/
+
+          surge --project ./_surge --domain "${DOMAIN}" --token "$SURGE_TOKEN"
           echo "url=https://${DOMAIN}/testbench-ecosystem-documentation/" >> $GITHUB_OUTPUT
           echo "domain=${DOMAIN}" >> $GITHUB_OUTPUT
 

@@ -83,7 +83,10 @@ jobs:
         env:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
-          surge --project ./build \
+          mkdir -p _surge/testbench-ecosystem-documentation
+          mv build/* _surge/testbench-ecosystem-documentation/
+
+          surge --project ./_surge \
                 --domain ${{ steps.dom.outputs.domain }} \
                 --token "$SURGE_TOKEN"
           echo "preview_url=https://${{ steps.dom.outputs.domain }}/testbench-ecosystem-documentation/" >> $GITHUB_OUTPUT
