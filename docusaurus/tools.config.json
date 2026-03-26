@@ -8,5 +8,10 @@
     "label": "TestBench Requirement Service",
     "description": "Service for synchronizing requirements between external sources and TestBench.",
     "logo": "img/testbench-requirement-service.svg"
+  },
+  "testbench-vs-code-extension": {
+    "label": "TestBench VS Code Extension",
+    "description": "VS Code extension that integrates TestBench workflows with Robot Framework.",
+    "logo": "img/vscode.svg"
   }
 }
