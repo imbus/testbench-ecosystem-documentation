@@ -1,4 +1,9 @@
 {
+  "testbench-ai-service": {
+    "label": "TestBench AI Service",
+    "description": "Service supporting multiple AI-driven use cases for TestBench.",
+    "logo": "img/testbench-ai-service.svg"
+  },
   "testbench-cli-reporter": {
     "label": "TestBench CLI Reporter",
     "description": "Command-line tool for reporting test results from CI/CD pipelines directly to TestBench.",
