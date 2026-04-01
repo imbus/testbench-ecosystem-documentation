@@ -4,6 +4,11 @@
     "description": "Command-line tool for reporting test results from CI/CD pipelines directly to TestBench.",
     "logo": "img/testbench-cli-reporter.svg"
   },
+  "testbench-defect-service": {
+    "label": "TestBench Defect Service",
+    "description": "Service for synchronizing defects between external sources and TestBench.",
+    "logo": "img/testbench-defect-service.svg"
+  },
   "testbench-requirement-service": {
     "label": "TestBench Requirement Service",
     "description": "Service for synchronizing requirements between external sources and TestBench.",
