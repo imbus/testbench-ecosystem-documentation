@@ -7,7 +7,7 @@ title: Quickstart
 
 1. Open a workspace folder in VS Code.
 2. Open the TestBench view from the side bar.
-3. Create or select a connection and sign in.
+3. Create or select a connection and sign in. To create a new connection, use the connection form in the TestBench view, enter server, port, username, and password, then sign in.
 
 ## 2. Set active context from Projects View
 
@@ -18,7 +18,9 @@ The extension stores this TOV context in `.testbench/ls.config.json`.
 
 ## 3. Open the context you want to work with
 
-The active behavior depends on what you open from Projects View:
+Open either the test object version you selected as active context, or a cycle that belongs to this test object version.
+
+The available features depend on what you open from Projects View:
 
 - If you open a TOV context, test generation is available.
 - If you open a cycle context, test generation and result import are available.
@@ -28,10 +30,10 @@ The active behavior depends on what you open from Projects View:
 You can start test generation from either of these two views:
 
 1. Projects View:
-	- run **Generate Robot Framework Test Suites (Cycle based)** on a cycle to generate suites for that cycle scope
-	- run **Generate Robot Framework Test Suites (TOV based)** on a TOV when you want TOV-scope generation
+    - run **Generate Robot Framework Test Suites (Cycle based)** on a cycle to generate suites for that cycle scope
+    - run **Generate Robot Framework Test Suites (TOV based)** on a TOV when you want TOV-scope generation
 2. Test Themes View:
-	- run **Generate Robot Framework Test Suites** on a test theme or test case set node to generate that subtree
+    - run **Generate Robot Framework Test Suites** on a test theme or test case set node to generate that subtree
 3. Execute the generated tests (for example with RobotCode).
 
 ## 5. Upload execution results
