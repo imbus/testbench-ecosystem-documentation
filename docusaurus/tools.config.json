@@ -8,5 +8,10 @@
     "label": "TestBench Requirement Service",
     "description": "Service for synchronizing requirements between external sources and TestBench.",
     "logo": "img/testbench-requirement-service.svg"
+  },
+  "testbench2robotframework": {
+    "label": "TestBench2RobotFramework",
+    "description": "Command-line tool to convert a TestBench JSON report into Robot Framework test suites and to write the execution results provided by Robot Framework back to the TestBench report.",
+    "logo": "img/testbench2robotframework.svg"
   }
 }
