@@ -75,7 +75,7 @@ requirements_path = "requirements/jsonl/"
 | Option | Type | Description | Default |
 |--------|------|-------------|---------|
 | `reader_class` | String | Reader class name or full module path | `"testbench_requirement_service.readers.JsonlRequirementReader"` |
-| `reader_config_path` | String | Path to a separate reader config file | — (uses inline `[testbench_requirement_service.reader_config]`) |
+| `reader_config_path` | String | Path to a separate reader config file | — (uses inline `[testbench-requirement-service.reader_config]`) |
 
 **Example:**
 
@@ -245,6 +245,7 @@ Controls how Sanic spawns and manages its worker process. In most cases you can 
 | Option | Type | Description | Default |
 |--------|------|-------------|---------|
 | `single_process` | Boolean | Run in single-process mode. Required when using mTLS. Set to `false` to enable multi-worker throughput. | `true` |
+| `keep_alive_timeout` | Integer | Seconds an idle HTTP keep-alive connection is held open waiting for the next request before being closed. A shorter value reduces the number of open connections that can delay shutdown. | `5` |
 | `run_kwargs` | Table | Raw keyword arguments forwarded verbatim to Sanic's `run()` call. Use for advanced Sanic tuning not exposed by other settings. | `{}` |
 
 **Example:**
@@ -252,6 +253,7 @@ Controls how Sanic spawns and manages its worker process. In most cases you can 
 ```toml
 [testbench-requirement-service.server]
 single_process = false
+keep_alive_timeout = 3
 run_kwargs = { workers = 4 }
 ```
 
