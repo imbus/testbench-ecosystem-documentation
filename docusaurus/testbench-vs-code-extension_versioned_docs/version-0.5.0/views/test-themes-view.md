@@ -33,12 +33,22 @@ The **Upload Execution Results To TestBench** action is visible for generated no
 
 ![Upload execution results action in Test Themes](./images/UploadResultsToTestbenchButton.png)
 
+### Default behavior after upload
+
+In TestBench, **Check-in mandatory for test execution** is enabled by default. You can find this option in **Administration > System-wide Preferences**.
+
+When this option is enabled, uploading execution results causes TestBench to check in the executed items. The extension shows only executable items that are not locked by the system, so uploaded items are removed from **Test Themes View** after a successful upload.
+
+If **Check-in mandatory for test execution** is disabled in TestBench, uploaded items remain visible in **Test Themes View** after upload.
+
+![TestBench check-in mandatory for test execution option](./images/TestBenchClientCheckInOption.png)
+
 ## Toolbar buttons
 
 The Test Themes View toolbar provides quick actions for navigation and tree updates:
 
-- **Open Projects View** switches back to Projects View.
 - **Refresh Test Themes** reloads the current Test Themes context.
+- **Open Projects View** switches back to Projects View.
 - **Search** filters test themes and test case sets in the tree.
 
 ![Search options for Test Themes](./images/SearchOptionsForTestThemes.png)

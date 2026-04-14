@@ -3,20 +3,33 @@ sidebar_position: 2
 title: Quickstart
 ---
 
+import loginWebm from './videos/login.webm';
+import loginMp4 from './videos/login.mp4';
+import linkTovWebm from './videos/link_tov.webm';
+import linkTovMp4 from './videos/link_tov.mp4';
+
 ## 1. Open workspace and sign in
 
 1. Open a workspace folder in VS Code.
 2. Open the TestBench view from the side bar.
 3. Create or select a connection and sign in. To create a new connection, use the connection form in the TestBench view, enter server, port, username, and password, then sign in.
 
-![Login to TestBench](./images/login.gif)
+<video controls preload="metadata" playsinline width="100%">
+    <source src={loginWebm} type="video/webm" />
+    <source src={loginMp4} type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
 
 ## 2. Set active context from Projects View
 
 1. In Projects View, navigate to a project.
-2. Right-click the target TOV you want to work with and choose **Set as Active TOV**.
+2. Right-click the target test object version (TOV) you want to work with and choose **Set as Active TOV**.
 
-![Link workspace to a Test Object Version](./images/link_tov.gif)
+<video controls preload="metadata" playsinline width="100%">
+    <source src={linkTovWebm} type="video/webm" />
+    <source src={linkTovMp4} type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
 
 The extension stores this TOV context in `.testbench/ls.config.json`.
 
