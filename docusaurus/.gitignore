@@ -17,6 +17,7 @@
 # Tool "next" docs (synced from neighboring repos, not committed)
 /testbench-cli-reporter/
 /testbench-requirement-service/
+/testbench-defect-service/
 
 # Misc
 .DS_Store
