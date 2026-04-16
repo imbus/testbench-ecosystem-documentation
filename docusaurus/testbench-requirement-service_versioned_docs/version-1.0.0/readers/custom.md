@@ -69,10 +69,6 @@ some_option = true
 
 **Or as a separate config file** (referenced via `reader_config_path`):
 
-```toml
-[testbench-requirement-service]
-reader_class = "custom_reader.CustomRequirementReader"
-reader_config_path = "custom_reader_config.toml"
 ```
 
 ```toml
