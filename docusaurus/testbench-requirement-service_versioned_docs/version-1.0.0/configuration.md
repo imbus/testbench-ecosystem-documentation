@@ -23,7 +23,7 @@ See [CLI Commands](cli-commands.md) for all options.
 
 ## Configuration precedence
 
-Highest priority first:
+The following order shows which source takes precedence when the same setting is defined in multiple places (highest priority first):
 
 1. **Command-line flags** (`start --host ... --port ...`)
 2. **Environment variables**
@@ -154,7 +154,7 @@ You will be prompted for a username and password. The command writes `password_h
 Non-interactive mode (e.g. for scripts or CI pipelines — avoid passing `--password` directly in a shared-environment shell to prevent it from being written to shell history):
 
 ```bash
-testbench-requirement-service set-credentials --username admin --password mypassword
+testbench-requirement-service set-credentials --username ADMIN --password PASSWORD
 ```
 
 ### HTTPS / TLS
@@ -259,7 +259,7 @@ forwarded_secret = "your-token"
 
 **`[testbench-requirement-service.server]`**
 
-Controls how Sanic spawns and manages its worker process. In most cases you can leave this section out and rely on the defaults.
+Controls how Sanic spawns and manages its worker process. In most cases you can leave out this section and rely on the defaults.
 
 | Option | Type | Description | Default |
 |--------|------|-------------|---------|
@@ -334,7 +334,7 @@ Each `start` command loads exactly one config file and binds to one port. To ser
 
 ### Setup
 
-**1. Create a config file per instance:**
+**1. Create one config file per instance:**
 
 `excel_config.toml`
 ```toml

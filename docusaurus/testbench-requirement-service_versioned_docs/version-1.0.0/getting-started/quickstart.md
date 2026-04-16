@@ -38,7 +38,7 @@ Visit [http://127.0.0.1:8020/docs](http://127.0.0.1:8020/docs) to explore the AP
 ### 4. Quick API check
 
 ```bash
-curl -u "admin:mypassword" http://127.0.0.1:8020/projects
+curl -u "ADMIN_USERNAME:PASSWORD" http://127.0.0.1:8020/projects
 ```
 
 **That's it!** Your service is ready to use.
@@ -90,7 +90,7 @@ Visit [http://127.0.0.1:8020/docs](http://127.0.0.1:8020/docs).
 ### 6. Quick API check
 
 ```bash
-curl -u "admin:mypassword" http://127.0.0.1:8020/projects
+curl -u "ADMIN_USERNAME:PASSWORD" http://127.0.0.1:8020/projects
 ```
 
 ---

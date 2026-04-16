@@ -42,14 +42,6 @@ C:\imbus\TestBench\iTB_RMProxy\wrapper-config\requirement-service-wrapper.proper
 
 This file registers the Requirement Service as a repository and points to its settings. **You typically do not need to change anything here**, but verify it contains:
 
-```properties
-de.imbus.itb.re.wrapper.class=de.imbus.testbench.service.rm.RequirementServiceWrapper
-
-# Repository ID shown in TestBench
-name=RequirementService
-
-settings = ../RequirementService/settings.properties
-```
 
 The `name` value is the repository identifier that appears in TestBench. The `settings` path points to the service settings file (relative to the wrapper config file).
 
@@ -78,7 +70,8 @@ If you configured HTTPS, use `https://` instead and ensure the TestBench host tr
    ```bash
    testbench-requirement-service start
    ```
-2. Open TestBench and trigger an import of requirements. Check the service logs for incoming requests.
+2. Start the RMProxy.
+3. Open TestBench, assign the Requirement Service as a new repository in the project management of your project, and select *Test Connection* from its context menu. You may need to set the username and password in the data sources table. Check the service logs for incoming requests.
 
 ---
 
@@ -87,7 +80,7 @@ If you configured HTTPS, use `https://` instead and ensure the TestBench host tr
 | Symptom | Likely cause | Fix |
 |---|---|---|
 | `Connection refused` | Service is not running or port mismatch | Start the service; verify `host` and `port` in config. |
-| `401 Unauthorized` | Wrong credentials | Re-run `testbench-requirement-service set-credentials` |
+| `401 Unauthorized` | Wrong credentials | Re-run `testbench-requirement-service set-credentials`. |
 | `500 Server Error` | Service or reader misconfiguration | Check service logs; run `configure --view` to inspect current settings. |
 
 ---
@@ -96,4 +89,4 @@ If you configured HTTPS, use `https://` instead and ensure the TestBench host tr
 
 - By default the service listens on `127.0.0.1` (loopback only). To accept connections from another machine (e.g. TestBench running on a different host), set `host = "0.0.0.0"` in `config.toml`.
 - If a firewall is in place, open the configured port (default `8020`).
-- For production deployments, consider enabling HTTPS — see [Configuration](configuration.md#https--tls)
+- For production deployments, consider enabling HTTPS — see [Configuration](configuration.md#https--tls).

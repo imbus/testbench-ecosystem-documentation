@@ -53,7 +53,7 @@ server_url = "https://example.atlassian.net/"
 auth_type = "basic"
 ```
 
-With environment variables for credentials:
+With environment variables for credentials, run in the terminal:
 
 ```bash
 export JIRA_USERNAME=my-user@example.com
@@ -83,7 +83,7 @@ The configuration can be added directly to `config.toml` under `[testbench-requi
 
 ### Authentication methods
 
-Pick the auth flow that matches your Jira deployment. Credentials can be set in the config file or via environment variables.
+Pick the authentication flow that matches your Jira deployment. Credentials can be set in the config file or via environment variables.
 
 | `auth_type` | When to use | Required values |
 |-------------|-------------|-----------------|
@@ -144,7 +144,7 @@ Pick the auth flow that matches your Jira deployment. Credentials can be set in 
 
 ### Project-specific overrides
 
-All requirement & baseline settings can be overridden per project under `projects.<project>`:
+All requirement and baseline settings can be overridden per project under `[projects.<project>]` (separate config file) or `[testbench-requirement-service.reader_config.projects.<project>]` (inline in config.toml):
 
 | Setting | Description | Default |
 |---------|-------------|---------|
@@ -241,7 +241,7 @@ JIRA_PASSWORD=my-api-token
 
 ### Smoke test
 
-1. Set your Jira credentials (env vars or config):
+1. Set your Jira credentials (via environment variables or config):
    ```bash
    export JIRA_USERNAME=my-user@example.com
    export JIRA_PASSWORD=my-api-token
@@ -252,12 +252,12 @@ JIRA_PASSWORD=my-api-token
    testbench-requirement-service start
    ```
 
-3. Call the projects endpoint:
+3. Call the `projects` endpoint:
    ```bash
-   curl -u "admin:mypassword" http://127.0.0.1:8020/projects
+   curl -u "ADMIN_USERNAME:PASSWORD" http://127.0.0.1:8020/projects
    ```
 
-4. Verify that Jira projects are returned.
+4. Verify that the expected Jira projects are returned.
 
 ### Troubleshooting
 
@@ -265,6 +265,6 @@ JIRA_PASSWORD=my-api-token
 |---------|-------|----------|
 | `ModuleNotFoundError` | Missing `[jira]` dependencies | Run `pip install testbench-requirement-service[jira]` |
 | Connection refused | Wrong `server_url` | Verify the URL is reachable and includes the protocol (`https://`) |
-| 401 / 403 from Jira | Invalid or missing credentials | Check env vars or config match the selected `auth_type` |
+| 401 / 403 from Jira | Invalid or missing credentials | Check that the env vars or config match the selected `auth_type` |
 | SSL errors | Self-signed or corporate CA certificate | Set `ssl_ca_cert_path` to your CA bundle, or set `verify_ssl = false` for testing only |
 | Timeout errors | Slow Jira instance or network | Increase `timeout` and `max_retries` in config |
