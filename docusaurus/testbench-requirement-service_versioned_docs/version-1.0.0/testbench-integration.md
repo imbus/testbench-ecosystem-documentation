@@ -10,7 +10,7 @@ This page explains how to connect TestBench to the running TestBench Requirement
 
 ## Overview
 
-TestBench communicates with the Requirement Service through the **RMProxy** (Requirement Management Proxy) component. The connection is configured via a `.properties` file in the TestBench installation directory.
+TestBench communicates with the Requirement Service through the **RMProxy** (Requirement Management Proxy) component. The connection is configured via two `.properties` files in the TestBench installation directory.
 
 ---
 
@@ -37,11 +37,17 @@ It contains two relevant configuration files:
 Located in the `wrapper-config` subdirectory, e.g.:
 
 ```
-C:\imbus\TestBench\iTB_RMProxy\wrapper-config\requirement-service-wrapper.properties
+C:\imbus\TestBench\iTB_RMProxy\wrapper-config\RequirementService_wrapper.properties
 ```
 
 This file registers the Requirement Service as a repository and points to its settings. **You typically do not need to change anything here**, but verify it contains:
 
+```properties
+de.imbus.itb.re.wrapper.class=de.imbus.testbench.service.rm.RequirementServiceWrapper
+# repository ID
+name=RequirementService
+settings = ../requirementServiceWrapper/RequirementService_settings.properties
+```
 
 The `name` value is the repository identifier that appears in TestBench. The `settings` path points to the service settings file (relative to the wrapper config file).
 
@@ -50,7 +56,7 @@ The `name` value is the repository identifier that appears in TestBench. The `se
 Located at (relative to the RMProxy directory):
 
 ```
-C:\imbus\TestBench\iTB_RMProxy\RequirementService\settings.properties
+C:\imbus\TestBench\iTB_RMProxy\requirementServiceWrapper\RequirementService_settings.properties
 ```
 
 **This is the file you need to edit.** Set the URL to match the host and port the Requirement Service is listening on:
@@ -64,7 +70,7 @@ If you configured HTTPS, use `https://` instead and ensure the TestBench host tr
 
 ---
 
-## Verifying the Connection
+## Verifying the connection
 
 1. Start the Requirement Service:
    ```bash

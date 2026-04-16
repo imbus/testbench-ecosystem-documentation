@@ -45,15 +45,18 @@ The Jira account needs the following permissions:
 ### Minimal configuration
 
 ```toml
+# config.toml
 [testbench-requirement-service]
 reader_class = "JiraRequirementReader"
 
 [testbench-requirement-service.reader_config]
 server_url = "https://example.atlassian.net/"
 auth_type = "basic"
+username = "my-user@example.com"  # (or set JIRA_USERNAME as environment variable)
+password = "my-api-token"         # (or set JIRA_PASSWORD as environment variable)
 ```
 
-With environment variables for credentials, run in the terminal:
+Set credentials via environment variables, e.g. run in the terminal:
 
 ```bash
 export JIRA_USERNAME=my-user@example.com
@@ -144,7 +147,11 @@ Pick the authentication flow that matches your Jira deployment. Credentials can 
 
 ### Project-specific overrides
 
-All requirement and baseline settings can be overridden per project under `[projects.<project>]` (separate config file) or `[testbench-requirement-service.reader_config.projects.<project>]` (inline in config.toml):
+All requirement and baseline settings can be overridden per project.
+
+**Inline in `config.toml`:** Add a `[testbench-requirement-service.reader_config.projects.<project>]` section.
+
+**Separate config file:** Add a `[projects.<project>]` section in your reader config file.
 
 | Setting | Description | Default |
 |---------|-------------|---------|
@@ -162,6 +169,7 @@ All requirement and baseline settings can be overridden per project under `[proj
 ### Inline TOML (recommended)
 
 ```toml
+# config.toml
 [testbench-requirement-service]
 reader_class = "JiraRequirementReader"
 

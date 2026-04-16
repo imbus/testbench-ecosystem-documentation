@@ -54,7 +54,7 @@ Use this option if you have Python installed or are about to install it.
 ### Set up a virtual environment
 
 :::note
-If you are installing [From source](#from-source-developers): create the virtual environment inside the cloned repository instead.
+If you are installing [from source](#from-source-developers): create the virtual environment inside the cloned repository instead.
 :::
 
 A virtual environment keeps the installation isolated and provides a stable, predictable path to the executable. Navigate to the directory where you want the service to live, then run:
@@ -92,7 +92,7 @@ The base install includes the [JSONL reader](../readers/jsonl.md). Add extras fo
 | [Jira](../readers/jira.md) | `pip install testbench-requirement-service[jira]` |
 | All readers | `pip install testbench-requirement-service[excel,jira]` |
 
-Verify:
+Verify installation:
 ```bash
 testbench-requirement-service --version
 ```
@@ -113,7 +113,7 @@ With optional extras:
 pip install "testbench_requirement_service-x.y.z-py3-none-any.whl[excel,jira]"
 ```
 
-Verify:
+Verify installation:
 
 ```bash
 testbench-requirement-service --version
@@ -154,7 +154,7 @@ Install with all readers and development dependencies:
 pip install -e .[excel,jira,dev]
 ```
 
-Verify:
+Verify installation:
 
 ```bash
 testbench-requirement-service --version

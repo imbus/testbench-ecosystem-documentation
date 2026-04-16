@@ -112,7 +112,7 @@ Can be set globally and overridden per project.
 
 | Setting | Description | Default | Example |
 |---------|-------------|---------|---------|
-| `useExcelDirectly` | `true`: use `.xlsx`/`.xls` files.<br /> `false`: use text files | `false` | `true` |
+| `useExcelDirectly` | `true`: use `.xlsx`/`.xls` files.<br/>`false`: use text files | `false` | `true` |
 | `baselinesFromSubfolders` | Search subfolders for baseline files | `false` | `true` |
 | `worksheetName` | Worksheet name to use in Excel files (falls back to first sheet) | first sheet | `Tabelle1` |
 | `dateFormat` | Date format for version dates. Accepts Java `SimpleDateFormat` (e.g. `yyyy-MM-dd HH:mm:ss`) or Python `strftime` (e.g. `%Y-%m-%d %H:%M:%S`). Auto-detected by presence of `%`. Falls back to `dateutil` auto-detection. | auto | `yyyy-MM-dd HH:mm:ss` |
@@ -196,6 +196,7 @@ For `.properties` files: place a file named `<ProjectName>.properties` inside th
 When configuring inline in `config.toml`, keys containing dots must be **quoted**:
 
 ```toml
+# config.toml
 [testbench-requirement-service]
 reader_class = "ExcelRequirementReader"
 
@@ -212,7 +213,30 @@ useExcelDirectly = false
 "requirement.status" = 5
 ```
 
-### `.properties` file
+### Separate `.toml` file
+
+```toml
+# config.toml
+[testbench-requirement-service]
+reader_class = "ExcelRequirementReader"
+reader_config_path = "excel_config.toml"
+```
+
+```toml
+# excel_config.toml (no section prefix)
+requirementsDataPath = "requirements/excel/"
+columnSeparator = ";"
+arrayValueSeparator = ","
+baselineFileExtensions = ".tsv,.csv,.txt"
+useExcelDirectly = false
+"requirement.id" = 1
+"requirement.version" = 6
+"requirement.name" = 3
+"requirement.owner" = 4
+"requirement.status" = 5
+```
+
+### Separate `.properties` file
 
 ```properties
 # reader_config.properties

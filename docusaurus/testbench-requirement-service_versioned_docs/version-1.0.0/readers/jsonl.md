@@ -45,6 +45,7 @@ The configuration can be added directly to `config.toml` under `[testbench-requi
 ### Minimal configuration
 
 ```toml
+# config.toml
 [testbench-requirement-service]
 reader_class = "JsonlRequirementReader"
 
@@ -73,7 +74,7 @@ requirements_path = "requirements/jsonl/"
 | **Projects** | Top-level directories inside `requirements_path` | Each directory is a project |
 | **Baselines** | `.jsonl` files inside a project directory | Each file is a baseline |
 | **Requirements** | JSON objects (one per line) in a `.jsonl` file | Each line is a requirement or folder node |
-| **User-defined attributes** | `UserDefinedAttributes.json` at the top of `requirements_path` | Defines available types of user defined fields (UDF) |
+| **User-defined attributes** | `UserDefinedAttributes.json` at the top of `requirements_path` | Defines available types of user defined fields (UDF)|
 
 ## Requirement JSON schema
 
@@ -119,18 +120,18 @@ Each line in a baseline `.jsonl` file is a JSON object representing either a req
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `name` | string | Requirement name |
-| `extendedID` | string | External ID |
-| `key.id` | string | Unique identifier |
-| `key.version` | object | Version info: `name`, `date`, `author`, `comment` |
-| `owner` | string | Responsible person |
-| `status` | string | Requirement status |
-| `priority` | string | Priority level |
-| `requirement` | boolean | `true` = requirement, `false` = folder/group |
-| `description` | string | Requirement description |
-| `documents` | string[] | Attached document references |
-| `parent` | string or null | Parent node ID (`null` for roots) |
-| `userDefinedAttributes` | array | User-defined fields (see below) |
+| `name` | String | Requirement name |
+| `extendedID` | String | Extended ID |
+| `key.id` | String | Unique identifier |
+| `key.version` | Object | Version info: `name`, `date`, `author`, `comment` |
+| `owner` | String | Responsible person |
+| `status` | String | Requirement status |
+| `priority` | String | Priority level |
+| `requirement` | Boolean | `true` = requirement, `false` = folder/group |
+| `description` | String | Requirement description |
+| `documents` | List[String] | Attached document references |
+| `parent` | String or null | Parent node ID (`null` for roots) |
+| `userDefinedAttributes` | List[Object] | User-defined fields (see below) |
 
 ## UserDefinedAttributes.json
 
