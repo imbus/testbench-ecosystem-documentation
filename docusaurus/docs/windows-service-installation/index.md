@@ -105,66 +105,61 @@ If you installed using the **ready-to-use executable**, replace this with the di
 ### Method 2: CLI Configuration
 
 1. Install the service directly:
-```powershell
-nssm install <serviceName> "<serviceInstallDir>\.venv\Scripts\<serviceExecutable>" "start --port <servicePort>"
-```
+   ```powershell
+   nssm install <serviceName> "<serviceInstallDir>\.venv\Scripts\<serviceExecutable>" "start --port <servicePort>"
+   ```
 
 2. Configure application settings (startup directory):
-```powershell
-nssm set <serviceName> AppDirectory "<serviceInstallDir>"
-```
+   ```powershell
+   nssm set <serviceName> AppDirectory "<serviceInstallDir>"
+   ```
 
 3. Configure details settings (display name, description, startup type):
-```powershell
-nssm set <serviceName> DisplayName "<serviceDisplayName>"
-nssm set <serviceName> Description "Python-based <serviceDisplayName>"
-nssm set <serviceName> Start SERVICE_DELAYED_AUTO_START
-```
+   ```powershell
+   nssm set <serviceName> DisplayName "<serviceDisplayName>"
+   nssm set <serviceName> Description "Python-based <serviceDisplayName>"
+   nssm set <serviceName> Start SERVICE_DELAYED_AUTO_START
+   ```
 
 4. Configure exit actions (restart behavior):
-```powershell
-nssm set <serviceName> AppExit Default StopService
-```
+   ```powershell
+   nssm set <serviceName> AppExit Default StopService
+   ```
 
 5. Configure I/O settings (logging):
-```powershell
-nssm set <serviceName> AppStdout "<serviceInstallDir>\logs\stdout.log"
-nssm set <serviceName> AppStderr "<serviceInstallDir>\logs\stderr.log"
-nssm set <serviceName> AppRotateFiles 1
-```
+   ```powershell
+   nssm set <serviceName> AppStdout "<serviceInstallDir>\logs\stdout.log"
+   nssm set <serviceName> AppStderr "<serviceInstallDir>\logs\stderr.log"
+   nssm set <serviceName> AppRotateFiles 1
+   ```
 
 ### Managing the Service
 
-##### Start service:
-```powershell
-nssm start <serviceName>
-```
-
-##### Check status:
-```powershell
-nssm status <serviceName>
-```
-
-##### Edit service:
-```powershell
-nssm edit <serviceName>
-```
-
-##### Restart service:
-```powershell
-nssm restart <serviceName>
-```
-
-##### Stop service:
-```powershell
-nssm stop <serviceName>
-```
-
-##### Remove service:
-```powershell
-nssm remove <serviceName>
-```
-
+- **Start service**:
+   ```powershell
+   nssm start <serviceName>
+   ```
+- **Check status**:
+   ```powershell
+   nssm status <serviceName>
+   ```
+- **Edit service**:
+   ```powershell
+   nssm edit <serviceName>
+   ```
+- **Restart service**:
+   ```powershell
+   nssm restart <serviceName>
+   ```
+- **Stop service**:
+   ```powershell
+   nssm stop <serviceName>
+   ```
+- **Remove service**:
+   ```powershell
+   nssm remove <serviceName>
+   ```
+<br/>
 ---
 
 ## Option 2: FireDaemon
@@ -242,21 +237,21 @@ nssm remove <serviceName>
 
 First select the service from the services list.
 
-##### Start service:
+- **Start service**:
 ![FireDaemon GUI Start Service](images/firedaemon-12.png)
 
-##### Stop service:
+- **Stop service**:
 ![FireDaemon GUI Stop Service](images/firedaemon-13.png)
 
-##### Restart service:
+- **Restart service**:
 ![FireDaemon GUI Restart Service](images/firedaemon-14.png)
 
-##### Edit service:
+- **Edit service**:
 ![FireDaemon GUI Edit Service](images/firedaemon-15.png)
 
-##### Remove service:
+- **Remove service**:
 ![FireDaemon GUI Remove Service](images/firedaemon-16.png)
-
+<br/>
 ---
 
 ## Option 3: YAJSW (Yet Another Java Service Wrapper)
@@ -325,20 +320,19 @@ First select the service from the services list.
 
 Open Command Prompt as Administrator:
 
-##### Start service:
-```cmd
-<serviceInstallDir>\yajsw\bat\startService.bat
-```
-
-##### Stop service:
-```cmd
-<serviceInstallDir>\yajsw\bat\stopService.bat
-```
-
-##### Remove service:
-```cmd
-<serviceInstallDir>\yajsw\bat\uninstallService.bat
-```
+- **Start service**:
+   ```cmd
+   <serviceInstallDir>\yajsw\bat\startService.bat
+   ```
+- **Stop service**:
+   ```cmd
+   <serviceInstallDir>\yajsw\bat\stopService.bat
+   ```
+- **Remove service**:
+   ```cmd
+   <serviceInstallDir>\yajsw\bat\uninstallService.bat
+   ```
+<br/>
 ---
 
 ## Autostart with Windows Task Scheduler *(Alternative)*
