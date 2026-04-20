@@ -216,7 +216,7 @@ forwarded_secret = "secret"
 Without proxy configuration, the service ignores all proxy headers. This is safe. Only enable proxy settings when actually behind a proxy.
 :::
 
-**Nginx example**
+#### Nginx example
 
 **Nginx configuration:**
 

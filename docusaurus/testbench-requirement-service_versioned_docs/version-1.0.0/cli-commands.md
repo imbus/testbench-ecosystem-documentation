@@ -13,7 +13,7 @@ testbench-requirement-service [COMMAND] [OPTIONS]
 
 ---
 
-## Commands Overview
+## Commands overview
 
 | Command | Description |
 |---|---|
