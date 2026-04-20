@@ -1,12 +1,26 @@
 {
   "testbench-cli-reporter": {
     "label": "TestBench CLI Reporter",
-    "description": "Command-line tool for reporting test results from CI/CD pipelines directly to TestBench.",
-    "logo": "img/testbench-cli-reporter.svg"
+    "description": "Command-line tool for reporting test results from CI/CD pipelines directly to TestBench."
+  },
+  "testbench-defect-service": {
+    "label": "TestBench Defect Service",
+    "description": "Service for synchronizing defects between external sources and TestBench."
   },
   "testbench-requirement-service": {
     "label": "TestBench Requirement Service",
-    "description": "Service for synchronizing requirements between external sources and TestBench.",
-    "logo": "img/testbench-requirement-service.svg"
+    "description": "Service for synchronizing requirements between external sources and TestBench."
+  },
+  "testbench-vscode-extension": {
+    "label": "TestBench VSCode Extension",
+    "description": "The TestBench Extension enables seamless synchronization between TestBench and Robot Framework files in VS Code."
+  },
+  "testbench2robotframework": {
+    "label": "TestBench2RobotFramework",
+    "description": "Command-line tool for generating Robot Framework test specification from TestBench and read Robot Framework test results to TestBench."
+  },
+  "robotframework-libdoc2testbench": {
+    "label": "Libdoc2TestBench",
+    "description": "Libdoc2TestBench is a Robot Framework Libdoc extension that generates import formats compatible with TestBench."
   }
 }

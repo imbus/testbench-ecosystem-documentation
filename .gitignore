@@ -142,3 +142,8 @@ docusaurus/build/
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 docusaurus/testbench-cli-reporter/
+docusaurus/testbench-requirement-service/
+docusaurus/testbench-defect-service/
+docusaurus/testbench-vscode-extension/
+docusaurus/robotframework-libdoc2testbench/
+docusaurus/testbench2robotframework/
