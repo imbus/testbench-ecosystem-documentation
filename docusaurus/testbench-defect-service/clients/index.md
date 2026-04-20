@@ -8,7 +8,7 @@ The TestBench Defect Service uses a pluggable client architecture. A **client** 
 
 ---
 
-## How Clients Work
+## How clients work
 
 When the service receives an API request from TestBench, it delegates the operation to the configured client. Every client implements the same interface (`AbstractDefectClient`), so swapping one client for another requires only a configuration change.
 
@@ -21,7 +21,7 @@ client_class = "testbench_defect_service.clients.JsonlDefectClient"
 
 ---
 
-## Available Clients
+## Available clients
 
 | Client | `client_class` value | Extra required | Description |
 |---|---|---|---|
@@ -31,7 +31,7 @@ client_class = "testbench_defect_service.clients.JsonlDefectClient"
 
 ---
 
-## Common Client Features
+## Common client features
 
 All clients share these capabilities:
 
@@ -44,7 +44,7 @@ All clients share these capabilities:
 
 ---
 
-## Choosing a Client
+## Choosing a client
 
 Use the [**JSONL client**](jsonl-client.md) when:
 - You want a simple, self-contained setup without external dependencies.
@@ -58,7 +58,7 @@ Use the [**Jira client**](jira-client.md) when:
 
 ---
 
-## Client Details
+## Client details
 
 - [JSONL Client](jsonl-client.md)
 - [Jira Client](jira-client.md)

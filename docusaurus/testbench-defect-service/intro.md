@@ -5,9 +5,9 @@ title: Introduction
 
 # Introduction
 
-[**TestBench Defect Service**](https://github.com/imbus/testbench-defect-service) is a lightweight, asynchronous REST API service that acts as a bridge between [Imbus TestBench](https://www.testbench.com/de/) and external defect tracking systems.
+[**TestBench Defect Service**](https://github.com/imbus/testbench-defect-service) is a lightweight, asynchronous REST API service that acts as a bridge between [imbus TestBench](https://www.testbench.com/de/) and external defect tracking systems.
 
-## What It Does
+## What it does
 
 TestBench works with defect data — creating, reading, updating, and deleting bug reports during test execution. The Defect Service provides a unified API layer that allows TestBench to communicate with any supported backend without being tied to a specific tool.
 
@@ -17,7 +17,7 @@ At its core the service:
 - Translates those API calls into backend-specific operations.
 - Returns structured responses that TestBench can understand regardless of which backend is used.
 
-## Key Features
+## Features
 
 - **Pluggable clients** — swap the backend without touching TestBench configuration.
 - **Per-project configuration** — control fields, attributes, and sync commands can all be overridden per project.

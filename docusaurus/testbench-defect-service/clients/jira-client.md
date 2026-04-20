@@ -37,17 +37,17 @@ Or when installing from source:
 pip install -e ".[jira]"
 ```
 
-### Required Jira Permissions
+### Required Jira permissions
 
 The service account used by the Defect Service must hold the following Jira project permissions:
 
-#### Project & Users
+#### Project & users
 | Permission | Required |
 |---|---|
 | **Browse Projects** | List and query projects |
 | **Browse Users** | Display assignees and reporters |
 
-#### Issue Management
+#### Issue management
 | Permission | Required |
 |---|---|
 | **Create Issues** | Sync new defects to Jira |
@@ -88,16 +88,15 @@ control_fields = ["priority", "status", "classification"]
 readonly       = false
 ```
 
-### Option Reference
 
-**Connection**
+### Connection settings
 
 | Key | Type | Required | Default | Description |
 |---|---|---|---|---|
 | `name` | string | No | `"Jira"` | Display name shown in TestBench. Must match the name in the DMProxy properties file or during setup. |
 | `server_url` | string | **Yes** | — | Base URL of your Jira instance (no trailing slash). |
 
-**Authentication**
+### Authentication methods
 
 | Key | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -107,7 +106,7 @@ readonly       = false
 | `token` | string | No | — | Personal Access Token for token auth (Jira Data Center). Can also be set via `JIRA_BEARER_TOKEN`. |
 | `enable_shared_auth` | boolean | No | — | Use service account credentials for all projects instead of per-user auth. |
 
-**Query & Fields**
+### Query & Fields
 
 | Key | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -115,7 +114,7 @@ readonly       = false
 | `attributes` | list | No | `["title", "status"]` | Jira fields to include in defect responses. |
 | `control_fields` | list | No | `["priority", "status", "classification"]` | Fields for which the client returns allowed values. See [Control Fields](jira-client#control-fields)|
 
-**Behavior**
+### Behavior
 
 | Key | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -123,7 +122,7 @@ readonly       = false
 | `show_change_history` | boolean | No | — | Include change history in extended defect attributes. |
 | `supports_changes_timestamps` | boolean | No | `true` | Whether the client tracks modification timestamps. |
 
-**Advanced**
+### Advanced
 
 | Key | Type | Required | Default | Description |
 |---|---|---|---|---|
@@ -161,7 +160,7 @@ token     = "your-personal-access-token"
 Personal Access Tokens expire based on the duration set in your Jira Data Center profile. If the service stops authenticating unexpectedly, check whether the token has expired and generate a new one.
 :::
 
-### Environment Variables
+### Environment variables
 
 :::tip
 Prefer environment variables over hardcoding credentials in `config.toml` to avoid accidentally committing secrets to source control.
@@ -177,13 +176,13 @@ To avoid storing credentials in the config file, use environment variables inste
 
 ---
 
-## Project Mapping
+## Project mapping
 
 The service lists Jira projects as `"<Project Name> (<PROJECT_KEY>)"`. TestBench selects a project by this combined name.
 
 The `{project}` placeholder in `defect_jql` is replaced with the Jira **project key** (e.g. `MYPROJ`) at query time.
 
-### Example JQL Queries
+### Example JQL queries
 
 Fetch only bugs, ordered by creation date:
 ```toml
@@ -197,7 +196,7 @@ defect_jql = "project = '{project}' AND component = 'Backend' AND resolution = U
 
 ---
 
-## Control Fields
+## Control fields
 
 The Jira client automatically queries Jira metadata to populate allowed values for the following fields:
 
@@ -211,7 +210,7 @@ Additional fields listed in `control_fields` are resolved via the Jira field met
 
 ---
 
-## Per-Project Overrides
+## Project-specific overrides
 
 Any top-level `client_config` option can be overridden per Jira project key:
 
@@ -240,7 +239,7 @@ The client automatically detects whether it is connected to Jira Cloud or Jira D
 
 ---
 
-## Known Limitations
+## Known limitations
 
 | Limitation | Details |
 |---|---|

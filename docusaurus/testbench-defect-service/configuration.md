@@ -16,12 +16,12 @@ testbench-defect-service configure   # Update an existing config
 testbench-defect-service set-credentials  # Update credentials only
 ```
 
-See [CLI Reference](cli.md) for all options.
+See [CLI Commands](cli.md) for all options.
 :::
 
 ---
 
-## File Structure
+## File structure
 
 A `config.toml` has two top-level sections:
 
@@ -35,7 +35,7 @@ A `config.toml` has two top-level sections:
 
 ---
 
-## Service Settings
+## Service settings
 
 ### Client
 
@@ -80,7 +80,7 @@ salt          = ""   # set via `testbench-defect-service set-credentials`
 | `password_hash` | string | Bcrypt hash of the service password. |
 | `salt` | string | Base64-encoded salt used for hashing. |
 
-### Reverse Proxy
+### Reverse proxy
 
 Only needed when the service runs behind a load balancer or reverse proxy (e.g., nginx, Traefik).
 
@@ -115,7 +115,7 @@ ssl_ca_cert = "certs/ca.crt"   # optional — enables mTLS
 
 ---
 
-## Server Process Settings
+## Server process settings
 
 **`[testbench-defect-service.server]`**
 
@@ -168,7 +168,7 @@ file_path  = "testbench-defect-service.log"
 
 ---
 
-## Pre/Post Sync Commands
+## Pre/Post sync commands
 
 Both clients support running shell commands before and after TestBench syncs defects, configured under a `commands` subsection.
 
@@ -195,7 +195,7 @@ The process is launched via `subprocess` and the service waits for it to complet
 
 ---
 
-## Client Configuration
+## Client configuration
 
 Each backend client has its own `[testbench-defect-service.client_config]` section. See the individual client documentation for the full option reference:
 
@@ -250,7 +250,7 @@ testbench-defect-service start --config shared_config.toml --port 8032
 
 ### TestBench integration with multiple instances
 
-For each running instance, configure a separate RMProxy wrapper entry in TestBench pointing to the corresponding URL:
+For each running instance, configure a separate DMProxy wrapper entry in TestBench pointing to the corresponding URL:
 
 ```properties
 # JSONL service
@@ -260,4 +260,4 @@ server.url=http://127.0.0.1:8030
 server.url=http://127.0.0.1:8031
 ```
 
-See the [TestBench Integration](testbench-integration.md) page for the full RMProxy setup.
+See the [TestBench Integration](testbench-integration.md) page for the full DMProxy setup.

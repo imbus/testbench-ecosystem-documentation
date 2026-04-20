@@ -1,11 +1,11 @@
 ---
 sidebar_position: 6
-title: CLI reference
+title: CLI Commands
 ---
 
-# CLI Reference
+# CLI Commands
 
-The TestBench Defect Service is controlled entirely from the command line. The main entry point is:
+The executable is `testbench-defect-service`. All commands support `--help` for detailed usage.
 
 ```bash
 testbench-defect-service [COMMAND] [OPTIONS]
@@ -13,7 +13,7 @@ testbench-defect-service [COMMAND] [OPTIONS]
 
 ---
 
-## Commands Overview
+## Commands overview
 
 | Command | Description |
 |---|---|
@@ -193,7 +193,7 @@ testbench-defect-service start \
   --client-config jira.toml
 ```
 
-### Single-Process vs. Multi-Process
+### Single-process vs. multi-process
 
 By default the service runs in **multi-process mode** (one worker per CPU core), managed by Sanic's `AppLoader`.
 
@@ -202,17 +202,8 @@ The service automatically switches to **single-process mode** when:
 
 ---
 
-## Global Options
 
-These options are available on every command:
-
-| Option | Description |
-|---|---|
-| `--help` | Show help for the command and exit. |
-
----
-
-## Getting Help
+## Getting help
 
 ```bash
 # General help

@@ -51,9 +51,9 @@ curl -u "admin:mypassword" http://127.0.0.1:8030/projects
 
 Choose the extras for your backend. See [Installation](installation.md#from-pypi-online-recommended) for available options.
 
-### 2. Create `config.toml`
+### 2. Create the configuration file
 
-Start from a minimal example. Here is one for the JSONL client:
+Create a new file called `config.toml` in the root directory of your installation. Start from a minimal example. Here is one for the JSONL client:
 
 ```toml
 [testbench-defect-service]
