@@ -179,7 +179,7 @@ testbench-requirement-service start --ssl-cert certs/server.crt --ssl-key certs/
 
 ---
 
-## Getting Help
+## Getting help
 
 ```bash
 # General help
