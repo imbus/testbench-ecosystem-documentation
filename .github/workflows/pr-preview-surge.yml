@@ -25,7 +25,7 @@ jobs:
         working-directory: ./docusaurus
     steps:
       - name: Checkout PR head (read-only)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 0
 
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -46,7 +46,7 @@ jobs:
         run: npm run build
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: pr-build
           path: docusaurus/build
@@ -64,7 +64,7 @@ jobs:
 
     steps:
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: pr-build
           path: ./build
@@ -92,7 +92,7 @@ jobs:
           echo "preview_url=https://${{ steps.dom.outputs.domain }}/testbench-ecosystem-documentation/" >> $GITHUB_OUTPUT
 
       - name: Comment with preview URL
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.number }}
