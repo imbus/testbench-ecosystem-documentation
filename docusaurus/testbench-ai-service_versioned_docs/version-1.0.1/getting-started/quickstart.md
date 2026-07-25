@@ -67,7 +67,7 @@ Visit [http://127.0.0.1:8010/docs](http://127.0.0.1:8010/docs) to explore the AP
 
 ## 5. Activate the plugins in the Testbench client
 
-To use the AI-service, you need the [plugins](../testbench-integration.md#ai-service-plugins-in-TestBench) in the Testbench client.
+To use the AI-service, you need the [plugins](../testbench-integration.md#ai-service-plugins-in-testbench) in the Testbench client.
 
 Select the plugin section in the Testbench and activate them for your use.
 

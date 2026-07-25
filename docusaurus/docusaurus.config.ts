@@ -184,6 +184,7 @@ const config: Config = {
       ];
     }),
     require.resolve('docusaurus-lunr-search'),
+    'docusaurus-plugin-image-zoom',
     [
       'pwa',
       {
@@ -250,6 +251,17 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
+    zoom: {
+      selector: '.markdown img',
+      background: {
+        light: 'var(--ifm-background-surface-color)',
+        dark: 'var(--ifm-background-surface-color)',
+      },
+      config: {
+        margin: 24,
+        scrollOffset: 0,
+      },
+    },
     navbar: {
       title: '',
       logo: {
