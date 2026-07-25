@@ -31,8 +31,8 @@ testbench2robotframework generate-tests TESTBENCH_REPORT
 
 This command generates a Robot Framework test suite for each test case set specified in the `TESTBENCH_REPORT`.
 
-![](./images/testthemen.PNG)
-![](./images/generated.PNG)
+![](images/testthemen.PNG)
+![](images/generated.PNG)
 
 The example above demonstrates how Robot Framework test suites are generated based on the *Test Theme Tree* defined in TestBench.
 
