@@ -300,6 +300,7 @@ First select the service from the services list.
    wrapper.logfile=<serviceInstallDir>/logs/yajsw.log
    wrapper.logfile.maxsize=10m
    wrapper.logfile.maxfiles=5
+   wrapper.console.pipestreams=true
    ```
 
    :::note
