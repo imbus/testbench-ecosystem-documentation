@@ -487,3 +487,12 @@ img {
   width: auto;
   height: auto;
 }
+
+/* Screenshots: render at a comfortable size regardless of the source resolution.
+   Needs a class rather than an `img width="..."` attribute, because the bare
+   `img { width: auto }` rule above outranks HTML presentational attributes. */
+.screenshot {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+}

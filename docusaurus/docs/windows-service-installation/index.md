@@ -2,7 +2,7 @@
 title: Windows Service Installation
 ---
 
-This guide explains how to install a TestBench service as a Windows service using [NSSM](#option-1-nssm-recommended), [FireDaemon](#option-2-firedaemon), [YAJSW](#option-3-yajsw-yet-another-java-service-wrapper), or the built-in [Windows Task Scheduler](#autostart-with-windows-task-scheduler-alternative).
+This guide explains how to install a TestBench service as a Windows service using [Servy](#option-1-servy-recommended), [NSSM](#option-2-nssm), [FireDaemon](#option-3-firedaemon), [YAJSW](#option-4-yajsw-yet-another-java-service-wrapper), or the built-in [Windows Task Scheduler](#autostart-with-windows-task-scheduler-alternative).
 
 :::tip[Service-specific values]
 Each service's documentation provides the concrete values to substitute for `<serviceName>`, `<serviceDisplayName>`, `<serviceExecutable>`, `<servicePort>`, and `<serviceInstallDir>` used in the examples below.
@@ -25,23 +25,164 @@ If you installed using the **ready-to-use executable**, replace this with the di
 
 ## Which Option to Choose?
 
-| Feature | NSSM | FireDaemon | YAJSW |
-|---------|------|------------|-------|
-| **License** | Free (Public Domain) | Commercial | Free (Apache License) |
-| **GUI** | Yes | Yes | No |
-| **Requirements** | None | None | Java Runtime |
-| **Complexity** | Low | Low | Medium |
-| **Best For** | Most users, simple & free | Enterprise GUI management | Java environments, cross-platform |
+| Feature | Servy | NSSM | FireDaemon | YAJSW |
+|---------|-------|------|------------|-------|
+| **License** | Free (MIT License) | Free (Public Domain) | Commercial | Free (Apache License) |
+| **GUI** | Yes | Yes | Yes | No |
+| **CLI / scriptable** | Yes (CLI + PowerShell module) | Yes | Yes | Yes |
+| **Requirements** | None | None | None | Java Runtime |
+| **Complexity** | Low | Low | Low | Medium |
+| **Best For** | Most users — GUI *and* scripted rollouts | Minimal, long-established free wrapper | Enterprise GUI management | Java environments, cross-platform |
 
 ### Recommendations
 
-- **NSSM**: **Recommended for most users** — free, lightweight, simple to configure, well-documented, and widely used
+- **Servy**: **Recommended for most users** — free (MIT), Windows-native, and the only option here that offers a GUI, a CLI and a PowerShell module for the same configuration, so a setup can be clicked once and scripted afterwards. Adds log rotation, health checks, service dependencies and start/stop hooks out of the box
+- **NSSM**: Choose if you prefer a minimal, long-established wrapper with a large body of third-party documentation
 - **FireDaemon**: Choose if you have budget for commercial software and prefer comprehensive GUI-based management with advanced features
 - **YAJSW**: Choose if you already have Java installed or need cross-platform compatibility (also supports Linux/macOS)
 
 ---
 
-## Option 1: NSSM *(Recommended)*
+## Option 1: Servy *(Recommended)*
+
+Servy is a Windows-native process wrapper (MIT licensed) that offers a GUI, a CLI
+(`servy-cli.exe`) and a PowerShell module for the same configuration.
+
+:::caution[Administrator privileges are mandatory]
+Servy needs elevation for **every** operation — the GUI as well as *every* `servy-cli`
+subcommand, including `--help` and `status`. Servy reads and writes its own database and key
+material below `C:\ProgramData\Servy`. Without elevation you get
+`Access to the path 'C:\ProgramData\Servy\security\aes_key.dat' is denied.`
+:::
+
+### Installation
+
+Configure the service using one of the following methods:
+
+### Method 1: GUI Configuration
+
+1. Start `Servy.exe` **as Administrator**.
+
+2. Configure the following in the **Main** tab:
+   - Service Name: `<serviceName>`
+   - Display Name: `<serviceDisplayName>`
+   - Service Description: `Python-based <serviceDisplayName>`
+   - Process Path: Path to the service executable
+     e.g., `<serviceInstallDir>\.venv\Scripts\<serviceExecutable>`
+   - Startup Directory: Path to the root directory containing configuration files
+     e.g., `<serviceInstallDir>\`
+   - Process Parameters: Startup parameters
+     e.g., `start --port <servicePort>`
+   - Startup Type: `Automatic (delayed start)`
+   - Process Priority: `Normal (default)`
+   - Start Timeout: `10` (seconds)
+   - Stop Timeout: `5` (seconds)
+   - Enable Console UI: leave **unchecked**
+
+   <img src={require('./images/servy-1.png').default} alt="Servy GUI Main Tab Filled" className="screenshot" />
+
+   :::warning[Enable Console UI disables logging]
+   "Enable Console UI" and stdout/stderr redirection are mutually exclusive. Leave the
+   checkbox unchecked, otherwise the log files configured in the **Logging** tab stay empty.
+   :::
+
+3. Configure the following in the **Logging** tab:
+   - Stdout: Path to the log file for stdout output,
+     e.g., `<serviceInstallDir>\logs\stdout.log`
+   - Stderr: Path to the log file for stderr output,
+     e.g., `<serviceInstallDir>\logs\stderr.log`
+   - Optionally enable size- or date-based log rotation.
+
+4. **Optional:** In the **Recovery** tab, configure what happens when the process exits
+   unexpectedly — recovery actions, health checks and notifications.
+
+5. **Optional:** In the **Advanced** tab, set environment variables (`VAR=value`, one per
+   line or separated by semicolons) and Windows service dependencies. Use *service* names,
+   not display names — e.g., a database service the TestBench service has to wait for.
+
+6. **Optional:** In the **Log On** tab, configure the account the service runs under. Only
+   needed if not using the local system account.
+
+7. **Optional:** In the **Pre-Launch**, **Post-Launch**, **Pre-Stop** and **Post-Stop** tabs,
+   define hooks that run around the service process — each with its own working directory,
+   parameters, log files and timeout.
+
+8. Click **Install** to register the service, then **Start** to run it.
+
+   :::tip[Changing an installed service]
+   To edit an existing service, fill the form again with the changed values and click
+   **Install** once more — this updates the service instead of creating a second one.
+   :::
+
+### Method 2: CLI Configuration
+
+Open **PowerShell as Administrator** and install the service in one command:
+
+```powershell
+& "C:\Program Files\Servy\servy-cli.exe" install --quiet `
+  --name="<serviceName>" `
+  --displayName="<serviceDisplayName>" `
+  --description="Python-based <serviceDisplayName>" `
+  --path="<serviceInstallDir>\.venv\Scripts\<serviceExecutable>" `
+  --startupDir="<serviceInstallDir>" `
+  --params="start --port <servicePort>" `
+  --startupType="AutomaticDelayedStart" `
+  --priority="Normal" `
+  --startTimeout=10 `
+  --stopTimeout=5
+```
+
+Values containing spaces must be quoted (`--params="start --port <servicePort>"`);
+unquoted, everything after the first space is parsed as the next argument.
+
+Running `install` again with changed values updates the existing service.
+
+### Managing the Service
+
+In the GUI, use the **Install**, **Uninstall**, **Start**, **Stop** and **Restart** buttons
+at the bottom of the window. The **Manager** menu opens an overview of all services managed
+by Servy, including live CPU/RAM usage.
+
+From an elevated PowerShell:
+
+- **Start service**:
+   ```powershell
+   & "C:\Program Files\Servy\servy-cli.exe" start --quiet --name="<serviceName>"
+   ```
+- **Check status**:
+   ```powershell
+   & "C:\Program Files\Servy\servy-cli.exe" status --name="<serviceName>"
+   ```
+- **Restart service**:
+   ```powershell
+   & "C:\Program Files\Servy\servy-cli.exe" restart --quiet --name="<serviceName>"
+   ```
+- **Stop service**:
+   ```powershell
+   & "C:\Program Files\Servy\servy-cli.exe" stop --quiet --name="<serviceName>"
+   ```
+- **Remove service**:
+   ```powershell
+   & "C:\Program Files\Servy\servy-cli.exe" uninstall --quiet --name="<serviceName>"
+   ```
+
+### Export and Import
+
+Servy stores its configuration in a machine-local database, not in a file next to the
+service. Use `Export` to write a configuration to XML or JSON and `Import` to recreate it on
+another machine — this is also the way to keep the configuration under version control:
+
+```powershell
+& "C:\Program Files\Servy\servy-cli.exe" export --quiet --name="<serviceName>" --config="json" --path="<serviceInstallDir>\servy-<serviceName>.json"
+& "C:\Program Files\Servy\servy-cli.exe" import --quiet --config="json" --path="<serviceInstallDir>\servy-<serviceName>.json" --install
+```
+
+`--install` registers the imported service in the Windows Service Control Manager, not only
+in Servy's own database.
+<br/>
+---
+
+## Option 2: NSSM
 
 ### Installation
 
@@ -162,7 +303,7 @@ If you installed using the **ready-to-use executable**, replace this with the di
 <br/>
 ---
 
-## Option 2: FireDaemon
+## Option 3: FireDaemon
 
 ### Installation Steps
 
@@ -254,7 +395,7 @@ First select the service from the services list.
 <br/>
 ---
 
-## Option 3: YAJSW (Yet Another Java Service Wrapper)
+## Option 4: YAJSW (Yet Another Java Service Wrapper)
 
 ### Installation Steps
 
@@ -372,5 +513,5 @@ The Windows Task Scheduler is a simpler alternative to a registered Windows serv
    - **Settings**: Uncheck **"Stop the task if it runs longer than:"** — the service is intended to run indefinitely.
 
 :::info
-The service can be stopped via Task Manager or `taskkill`. Unlike a registered Windows service there is no clean shutdown handling. For production environments, NSSM or FireDaemon are the recommended approach.
+The service can be stopped via Task Manager or `taskkill`. Unlike a registered Windows service there is no clean shutdown handling. For production environments, Servy or NSSM are the recommended approach.
 :::
